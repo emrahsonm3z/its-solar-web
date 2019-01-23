@@ -92,7 +92,7 @@ class AppHeader extends React.Component {
                   onClick={this.handleClick}
                 >
                   <img
-                    src="assets/images-demo/g1-sm.jpg"
+                    src="../assets/images-demo/g1-sm.jpg"
                     alt="avatar"
                     className="avatar-img"
                   />
@@ -123,9 +123,11 @@ class AppHeader extends React.Component {
                     </a>
                   </MenuItem>
                   <div className="divider divider-solid my-1" />
-                  <MenuItem onClick={this.handleLogout}>
-                    <MaterialIcon icon="forward" />
-                    Sign out
+                  <MenuItem>
+                    <a href={DEMO.link} onClick={this.handleLogout}>
+                      <MaterialIcon icon="forward" />
+                      Sign out
+                    </a>
                   </MenuItem>
                 </Menu>
               </a>

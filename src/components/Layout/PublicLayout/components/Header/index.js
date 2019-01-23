@@ -49,30 +49,26 @@ class Modal2 extends React.Component {
   }
 }
 const Section = () => (
-  <Header className="app-header">
+  <Header className="app-header app-header--main">
     <div className="app-header-inner">
       <div className="header-left">
         <div className="list-unstyled list-inline">
-          <Link
-            to="/main"
-            className="list-inline-item logo"
-            style={{ color: "rgb(252, 181, 34)", display: "inline-block" }}
-          >
-            <Logo color="rgb(252, 181, 34)" />
-            <span>{APPCONFIG.brand}</span>
+          <Link to="/main" className="list-inline-item logo  p-0 px-sm-3">
+            <Logo body="#f39200" glare="#f9b233" />
+            <span className="d-none d-sm-inline-block">{APPCONFIG.brand}</span>
           </Link>
         </div>
       </div>
 
       <div className="header-right">
-        <div className="list-unstyled list-inline">
-          <div className="list-inline-item">
+        <div className="list-unstyled list-inline app-header--main-menu">
+          {/* <div className="list-inline-item">
             <Link to="/main/about">About</Link>
-          </div>
-          <div className="list-inline-item">
+          </div> */}
+          <div className="list-inline-item p-0 px-sm-3">
             <LocalesMenu />
           </div>
-          <div className="list-inline-item">
+          <div className="list-inline-item p-0 px-sm-3">
             <Modal2 />
           </div>
         </div>

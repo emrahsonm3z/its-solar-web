@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Route } from "react-router-dom";
 import { ConnectedRouter } from "react-router-redux";
 import { Provider } from "react-redux";
@@ -26,3 +27,8 @@ export default class Root extends Component {
     );
   }
 }
+
+Root.propTypes = {
+  store: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired
+};

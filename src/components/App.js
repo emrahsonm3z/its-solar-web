@@ -33,18 +33,15 @@ const AppRoute = ({
     {...rest}
     render={props => {
       if (requireAuth === userIsAuthenticated) {
-        // debugger;
         return <Component {...props} />;
       } else {
         if (requireAuth) {
-          debugger;
           return (
             <Redirect
               to={{ pathname: "/main", state: { from: props.location } }}
             />
           );
         } else {
-          // debugger;
           return (
             <Redirect
               to={{
@@ -65,7 +62,6 @@ class App extends Component {
     const isRoot =
       location.pathname === "/" || location.pathname === "/app" ? true : false;
     if (isRoot) {
-      // debugger;
       return userIsAuthenticated === true ? (
         <Redirect to="/app/dashboard" />
       ) : (

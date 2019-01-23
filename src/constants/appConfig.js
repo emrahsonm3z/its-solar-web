@@ -3,6 +3,7 @@ const year = date.getFullYear();
 
 const APPCONFIG = {
   brand: "Solar Energy",
+  its: "ITS Bilişim ve Enerji",
   year,
   AutoCloseMobileNav: true, // true, false. Automatically close sidenav on route change (Mobile only)
   customizer: true, // Boolean: true, false. Customizer will be removed completely when set to false

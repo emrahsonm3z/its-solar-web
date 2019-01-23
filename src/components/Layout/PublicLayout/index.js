@@ -1,6 +1,7 @@
 import React from "react";
 
 import App from "./container/App";
+import "./style.scss";
 // import Particles from "../../Particles";
 
 class PublicLayout extends React.Component {
