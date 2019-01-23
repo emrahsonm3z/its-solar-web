@@ -2,7 +2,6 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
@@ -12,6 +11,7 @@
       manifest.json provides metadata used when your web app is added to the
       homescreen on Android. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
@@ -22,11 +22,79 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+    <!-- google fonts -->
+    <script type="text/javascript">
+      WebFontConfig = {
+        google: {
+          families: [
+            "Rubik:300,400,500,700:latin-ext",
+            "Roboto:100,300,300italic,400,400italic,500,700:latin"
+          ]
+        }
+      };
+      (function() {
+        var wf = document.createElement("script");
+        wf.src = "%PUBLIC_URL%/vendors/webfontloader/webfontloader.js";
+        wf.type = "text/javascript";
+        wf.async = "true";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(wf, s);
+      })();
+    </script>
+
+    <!-- <link
+      href="https://fonts.googleapis.com/css?family=Roboto:100,300,300italic,400,400italic,500,700&amp;subset=latin-ext"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,700&amp;subset=latin-ext"
+      rel="stylesheet"
+    /> -->
+
     <title>React App</title>
+    <style>
+      #noscript-err {
+        background-color: #ff4d4f;
+        color: rgba(255, 255, 255, 0.9);
+        text-align: center;
+        padding: 1rem;
+      }
+      #loader-container {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+    <link rel="stylesheet" href="%PUBLIC_URL%/loader.css" />
+    <link
+      rel="stylesheet"
+      href="%PUBLIC_URL%/vendors/material-icons/material-icons.css"
+    />
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <div id="root">
+      <div id="loader-container">
+        <svg
+          class="spinner"
+          width="60px"
+          height="60px"
+          viewBox="0 0 60 60"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle
+            class="path"
+            fill="none"
+            stroke-width="4"
+            stroke-linecap="round"
+            cx="30"
+            cy="30"
+            r="28"
+          ></circle>
+        </svg>
+      </div>
+    </div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

@@ -1,0 +1,11 @@
+{
+  "navlink.dashboard": "Panel",
+  "navlink.about": "Hakkımızda",
+  "navlink.task": "Görevler",
+  "navlink.login": "Giriş",
+  "navlink.logout": "Çıkış",
+  "menu.locale.placeholder": "Dil",
+  "menu.locale.item.name.en": "İngilizce",
+  "menu.locale.item.name.tr": "Türkçe",
+  "menu.locale.item.name.de": "Almanca"
+}

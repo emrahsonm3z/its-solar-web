@@ -1,0 +1,11 @@
+{
+  "navlink.dashboard": "Instrumententafel",
+  "navlink.about": "Über uns",
+  "navlink.task": "Aufgaben",
+  "navlink.login": "Anmeldung",
+  "navlink.logout": "Ausloggen",
+  "menu.locale.placeholder": "Sprache",
+  "menu.locale.item.name.en": "Englisch",
+  "menu.locale.item.name.tr": "Türkisch",
+  "menu.locale.item.name.de": "Deutsch"
+}

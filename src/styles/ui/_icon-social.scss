@@ -1,0 +1,77 @@
+// social buttons
+html {
+  .btn-social {
+    @include social-btn-variant($gray-600);
+  }
+  .btn-twitter {
+    @include social-btn-variant(#00c7f7);
+  }
+  .btn-facebook {
+    @include social-btn-variant(#335397);
+  }
+  .btn-gplus,
+  .btn-google-plus {
+    @include social-btn-variant(#dd4a38);
+  }
+  .btn-instagram {
+    @include social-btn-variant(#82685a);
+  }
+  .btn-vimeo {
+    @include social-btn-variant(#63879c);
+  }
+  .btn-flickr {
+    @include social-btn-variant(#0061db);
+  }
+  .btn-github {
+    @include social-btn-variant(#3b3b3b);
+  }
+  .btn-pinterest {
+    @include social-btn-variant(#d73532);
+  }
+  .btn-tumblr {
+    @include social-btn-variant(#586980);
+  }
+  .btn-linkedin {
+    @include social-btn-variant(#018faf);
+  }
+  .btn-dribbble {
+    @include social-btn-variant(#ea73a0);
+  }
+  .btn-stumbleupon {
+    @include social-btn-variant(#ea4b24);
+  }
+  .btn-lastfm {
+    @include social-btn-variant(#b80638);
+  }
+  .btn-evernote {
+    @include social-btn-variant(#3bab27);
+  }
+  .btn-skype {
+    @include social-btn-variant(#00b0f6);
+  }
+  .btn-soundcloud {
+    @include social-btn-variant(#0066ff);
+  }
+  .btn-behance {
+    @include social-btn-variant(#0057ff);
+  }
+  .btn-rss {
+    @include social-btn-variant(#f79638);
+  }
+  .btn-youtube {
+    @include social-btn-variant(#cc181e);
+  }
+  .btn-wechat {
+    @include social-btn-variant(#4caf50);
+  }
+
+  .bg-facebook {
+    background-color: #335397;
+  }
+  .bg-twitter {
+    background-color: #00c7f7;
+  }
+  .bg-instagram {
+    background-color: #82685a;
+  }
+}

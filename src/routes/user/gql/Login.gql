@@ -1,0 +1,9 @@
+#import "./User.gql"
+mutation($email: String!, $password: String!) {
+  login(email: $email, password: $password) {
+    user {
+      ...UserInfo
+    }
+    token
+  }
+}

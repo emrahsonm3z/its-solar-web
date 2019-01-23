@@ -1,0 +1,11 @@
+{
+  "navlink.dashboard": "Dashboard",
+  "navlink.about": "About us",
+  "navlink.task": "Tasks",
+  "navlink.login": "Login",
+  "navlink.logout": "Logout",
+  "menu.locale.placeholder": "Language",
+  "menu.locale.item.name.en": "English",
+  "menu.locale.item.name.tr": "Turkish",
+  "menu.locale.item.name.de": "German"
+}
