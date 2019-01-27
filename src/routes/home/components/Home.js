@@ -1,18 +1,24 @@
 import React from "react";
+import { intlShape, injectIntl } from "react-intl";
 import "../style.scss";
 
 class Home extends React.Component {
   render() {
+    const { formatMessage } = this.props.intl;
     return (
       <div className="main--content">
         <div className="main--content__home">
-          <h3>ITS BİLİŞİM VE ENERJİ- 2019</h3>
-          <h1>SOLAR ENERGY</h1>
-          <h3>New Clean Generation for Utilities and Power Grids</h3>
+          <h3>{formatMessage({ id: "its.long" })} - 2019</h3>
+          <h1>{formatMessage({ id: "page.home.body1" })}</h1>
+          <h3>{formatMessage({ id: "page.home.body2" })}</h3>
         </div>
       </div>
     );
   }
 }
 
-export default Home;
+Home.propTypes = {
+  intl: intlShape.isRequired
+};
+
+export default injectIntl(Home);

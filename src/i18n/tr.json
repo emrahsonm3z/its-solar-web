@@ -1,11 +1,36 @@
 {
-  "navlink.dashboard": "Panel",
-  "navlink.about": "Hakkımızda",
-  "navlink.task": "Görevler",
-  "navlink.login": "Giriş",
-  "navlink.logout": "Çıkış",
-  "menu.locale.placeholder": "Dil",
-  "menu.locale.item.name.en": "İngilizce",
-  "menu.locale.item.name.tr": "Türkçe",
-  "menu.locale.item.name.de": "Almanca"
+  "its": {
+    "long": "ITS Bilişim ve Enerji",
+    "short": "ITS"
+  },
+  "header": {
+    "navlink": {
+      "login": "Giriş",
+      "logout": "Çıkış"
+    }
+  },
+  "footer": {
+    "message": "Tüm hakları saklıdır.",
+    "privacy": "Gizlilik",
+    "terms": "Şartlar"
+  },
+  "sidenav": {
+    "dashboard": "Panel"
+  },
+  "page": {
+    "home": {
+      "body1": "Güneş enerjisi",
+      "body2": "Araçlar ve Güç Şebekeleri için Yeni Temiz Nesil"
+    },
+    "user": {
+      "login": {
+        "title": "Üye Girişi",
+        "message": "Tekrar hoş geldiniz, hesabınızla oturum açın",
+        "email": "E-posta",
+        "password": "Şifre",
+        "button": "GİRİŞ",
+        "forgot": "E-posta adresinizi veya şifrenizi mi unuttunuz? Lütfen yönetici ile iletişime geçin."
+      }
+    }
+  }
 }

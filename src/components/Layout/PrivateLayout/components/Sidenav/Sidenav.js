@@ -53,8 +53,8 @@ class AppSidenav extends React.Component {
             "bg-danger": ["16", "26", "36"].indexOf(colorOption) >= 0
           })}
         >
+          <Logo body="#343a40" glare="#343a40" />
           <Link to="/app/dashboard" className="brand">
-            <Logo />
             {APPCONFIG.brand}
           </Link>
         </section>

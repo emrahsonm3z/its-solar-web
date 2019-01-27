@@ -38,6 +38,15 @@
     .footer-social-list a {
       color: #fff;
     }
+
+    .app-header--main {
+      max-width: 1200px;
+      position: relative;
+      top: 0.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 15;
+    }
   }
   // .app-header--main-menu {
   //   .list-inline-item {
@@ -56,8 +65,13 @@
     font-size: 20px;
   }
   &-img {
-    margin: 7px 15px 0 !important;
     width: 50px !important;
     height: 50px !important;
+  }
+}
+
+.app-sidenav-container {
+  .logo-img {
+    margin: 7px 0px 0 !important;
   }
 }

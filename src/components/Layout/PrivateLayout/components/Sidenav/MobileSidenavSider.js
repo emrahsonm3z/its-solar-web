@@ -37,7 +37,7 @@ class AppSidenav extends React.Component {
             "bg-danger": ["16", "26", "36"].indexOf(colorOption) >= 0
           })}
         >
-          <Logo />
+          <Logo body="#343a40" glare="#343a40" />
           <a href="#/" className="brand">
             {APPCONFIG.brand}
           </a>
@@ -48,7 +48,12 @@ class AppSidenav extends React.Component {
         </div>
 
         <div className="sidenav-footer">
-          <a target="_blank" without rel="noopener noreferrer" href={DEMO.link}>
+          <a
+            target="_blank"
+            without="true"
+            rel="noopener noreferrer"
+            href={DEMO.link}
+          >
             <Icon type="question-circle" />
             <span className="nav-text">
               <span>Help</span> & <span>Support</span>

@@ -35,7 +35,7 @@ class Modal2 extends React.Component {
     return (
       <div>
         <Button className="btn-w-xs" color="primary" onClick={this.showModal}>
-          <FormattedMessage id="navlink.login" />
+          <FormattedMessage id="header.navlink.login" />
         </Button>
         <Modal
           visible={this.state.visible}

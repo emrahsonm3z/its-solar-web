@@ -1,6 +1,6 @@
 import React from "react";
-import APPCONFIG from "constants/appConfig";
 import { withRouter } from "react-router-dom";
+import { intlShape, injectIntl } from "react-intl";
 
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -63,13 +63,16 @@ class Form extends React.Component {
 
   render() {
     const { email, password, errors } = this.state;
-    const { mutationLoading, error } = this.props;
-
+    const {
+      mutationLoading,
+      error,
+      intl: { formatMessage }
+    } = this.props;
     return (
       <section className="form-v1-container">
-        <h2>Login to Continue</h2>
+        <h2>{formatMessage({ id: "page.user.login.title" })}</h2>
         <p className="lead">
-          Welcome back, sign in with your {APPCONFIG.brand} account
+          {formatMessage({ id: "page.user.login.message" })}
         </p>
         <form onSubmit={this.handleSubmit} className="form-v1">
           <div className="form-group">
@@ -80,7 +83,7 @@ class Form extends React.Component {
               <Grid item xs>
                 <TextField
                   id="login-email"
-                  label="Email"
+                  label={formatMessage({ id: "page.user.login.email" })}
                   autoComplete="off"
                   fullWidth
                   value={email}
@@ -106,7 +109,7 @@ class Form extends React.Component {
               <Grid item xs>
                 <TextField
                   id="login-password"
-                  label="Password"
+                  label={formatMessage({ id: "page.user.login.password" })}
                   type="password"
                   fullWidth
                   autoComplete="off"
@@ -133,7 +136,7 @@ class Form extends React.Component {
               className="btn-cta btn-block"
               disabled={mutationLoading}
             >
-              Log in
+              {formatMessage({ id: "page.user.login.button" })}
             </Button>
           </div>
           {error && (
@@ -143,11 +146,15 @@ class Form extends React.Component {
           )}
         </form>
         <p className="additional-info">
-          Forgot your email or password? Please contact the administrator.
+          {formatMessage({ id: "page.user.login.forgot" })}
         </p>
       </section>
     );
   }
 }
 
-export default withRouter(Form);
+Form.propTypes = {
+  intl: intlShape.isRequired
+};
+
+export default injectIntl(withRouter(Form));

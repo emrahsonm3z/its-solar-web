@@ -1,11 +1,36 @@
 {
-  "navlink.dashboard": "Instrumententafel",
-  "navlink.about": "Über uns",
-  "navlink.task": "Aufgaben",
-  "navlink.login": "Anmeldung",
-  "navlink.logout": "Ausloggen",
-  "menu.locale.placeholder": "Sprache",
-  "menu.locale.item.name.en": "Englisch",
-  "menu.locale.item.name.tr": "Türkisch",
-  "menu.locale.item.name.de": "Deutsch"
+  "its": {
+    "long": "ITS Information und Energie",
+    "short": "ITS"
+  },
+  "header": {
+    "navlink": {
+      "login": "Anmeldung",
+      "logout": "Ausloggen"
+    }
+  },
+  "footer": {
+    "message": "Alle Rechte vorbehalten.",
+    "privacy": "Privatsphäre",
+    "terms": "Bedingungen"
+  },
+  "sidenav": {
+    "dashboard": "Instrumententafel"
+  },
+  "page": {
+    "home": {
+      "body1": "Solarenergie",
+      "body2": "Neue saubere Generation für Versorgungsunternehmen und Stromnetze"
+    },
+    "user": {
+      "login": {
+        "title": "Mitglieder Login",
+        "message": "Willkommen zurück, melden Sie sich mit Ihrem Konto an",
+        "email": "Email",
+        "password": "Passwort",
+        "button": "ANMELDUNG",
+        "forgot": "E-mail oder Passwort vergessen? Bitte wenden Sie sich an den Administrator."
+      }
+    }
+  }
 }

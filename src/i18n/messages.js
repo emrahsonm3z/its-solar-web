@@ -1,5 +1,7 @@
+import flatten from "flat";
+
 export default {
-  en: require("./en.json"),
-  tr: require("./tr.json"),
-  de: require("./de.json")
+  en: flatten(require("./en.json")),
+  tr: flatten(require("./tr.json")),
+  de: flatten(require("./de.json"))
 };

@@ -6,6 +6,7 @@
 .app-sidenav {
   display: flex;
   flex-direction: column;
+  overflow-y: hidden;
 
   + .ant-layout {
     transition: all 0.2s; // same with .ant-layout-sider, so that when sidenavWidth changes, the transition are consistent
@@ -85,7 +86,7 @@
 //
 .app-sidenav.ant-layout-sider-collapsed {
   .sidenav-header {
-    padding-left: 27.5px; // same with ant menu icon 32(padding) + 15/2 = 39.5
+    padding-left: 15px; // same with ant menu icon 32(padding) + 15/2 = 39.5
   }
 
   .brand {

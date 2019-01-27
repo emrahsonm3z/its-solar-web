@@ -1,11 +1,36 @@
 {
-  "navlink.dashboard": "Dashboard",
-  "navlink.about": "About us",
-  "navlink.task": "Tasks",
-  "navlink.login": "Login",
-  "navlink.logout": "Logout",
-  "menu.locale.placeholder": "Language",
-  "menu.locale.item.name.en": "English",
-  "menu.locale.item.name.tr": "Turkish",
-  "menu.locale.item.name.de": "German"
+  "its": {
+    "long": "ITS Information and Energy",
+    "short": "ITS"
+  },
+  "header": {
+    "navlink": {
+      "login": "Login",
+      "logout": "Logout"
+    }
+  },
+  "footer": {
+    "message": "All Rights Reserved.",
+    "privacy": "Privacy",
+    "terms": "Terms"
+  },
+  "sidenav": {
+    "dashboard": "Dashboard"
+  },
+  "page": {
+    "home": {
+      "body1": "Solar Energy",
+      "body2": "New Clean Generation for Utilities and Power Grids"
+    },
+    "user": {
+      "login": {
+        "title": "Member Login",
+        "message": "Welcome back, sign in with your account",
+        "email": "Email",
+        "password": "Password",
+        "button": "LOG IN",
+        "forgot": "Forgot your email or password? Please contact the administrator."
+      }
+    }
+  }
 }

@@ -17,7 +17,7 @@ import {
 class Login extends React.Component {
   render() {
     return (
-      <div className="p-5">
+      <div className="p-1 p-sm-4">
         <LoginForm {...this.props} />
       </div>
     );
