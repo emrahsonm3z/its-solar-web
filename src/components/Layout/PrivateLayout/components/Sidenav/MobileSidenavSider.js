@@ -66,8 +66,8 @@ class AppSidenav extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  sidenavWidth: state.settings.sidenavWidth,
-  colorOption: state.settings.colorOption
+  sidenavWidth: state.settings.privateLayout.sidenavWidth,
+  colorOption: state.settings.privateLayout.colorOption
 });
 
 export default connect(mapStateToProps)(AppSidenav);

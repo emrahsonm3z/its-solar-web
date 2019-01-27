@@ -118,7 +118,7 @@ const mapStateToProps = state => {
   return {
     userIsAuthenticated: state.user.isAuthenticated,
     lang: state.locale.lang,
-    theme: state.settings.theme
+    theme: state.settings.privateLayout.theme
   };
 };
 

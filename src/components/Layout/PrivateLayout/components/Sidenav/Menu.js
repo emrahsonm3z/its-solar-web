@@ -165,8 +165,8 @@ class AppMenu extends React.Component {
 const mapStateToProps = state => {
   // console.log(state);
   return {
-    collapsedNav: state.settings.collapsedNav,
-    colorOption: state.settings.colorOption,
+    collapsedNav: state.settings.privateLayout.collapsedNav,
+    colorOption: state.settings.privateLayout.colorOption,
     location: state.routing.location
   };
 };

@@ -27,9 +27,9 @@ class AppLayout extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  boxedLayout: state.settings.boxedLayout,
-  fixedSidenav: state.settings.fixedSidenav,
-  fixedHeader: state.settings.fixedHeader
+  boxedLayout: state.settings.privateLayout.boxedLayout,
+  fixedSidenav: state.settings.privateLayout.fixedSidenav,
+  fixedHeader: state.settings.privateLayout.fixedHeader
 });
 
 export default connect(mapStateToProps)(AppLayout);

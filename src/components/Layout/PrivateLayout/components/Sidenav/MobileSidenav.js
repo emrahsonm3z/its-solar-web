@@ -32,8 +32,8 @@ class AppSidenav extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  offCanvasMobileNav: state.settings.offCanvasMobileNav,
-  sidenavWidth: state.settings.sidenavWidth
+  offCanvasMobileNav: state.settings.privateLayout.offCanvasMobileNav,
+  sidenavWidth: state.settings.privateLayout.sidenavWidth
 });
 
 const mapDispatchToProps = dispatch => {
