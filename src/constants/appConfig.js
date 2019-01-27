@@ -19,18 +19,20 @@ const APPCONFIG = {
     gray: "#EDF0F1"
   },
   settings: {
-    layout: "1", // String: 1, 2, 3, 4 and add your own
-    boxedLayout: false, // Boolean: true, false
-    fixedSidenav: false, // Boolean: true, false
-    fixedHeader: false, // Boolean: true, false
-    collapsedNav: false, // Boolean: true, false
-    offCanvasNav: false, // Boolean: true, false
-    offCanvasMobileNav: true, // Boolean: true, false. Mobile only, by default, it's true (off canvas)
-    sidenavWidth: 240, // Number
-    headerShadow: true, // Boolean: true, false
-    sidenavShadow: false, // Boolean: true, false
-    colorOption: "15", // String: 11,12,13,14,15,16; 21,22,23,24,25,26; 31,32,33,34,35,36
-    theme: "light" // (WIP) String: light, gray, dark
+    layout: {
+      layout: "1", // String: 1, 2, 3, 4 and add your own
+      boxedLayout: false, // Boolean: true, false
+      fixedSidenav: false, // Boolean: true, false
+      fixedHeader: false, // Boolean: true, false
+      collapsedNav: false, // Boolean: true, false
+      offCanvasNav: false, // Boolean: true, false
+      offCanvasMobileNav: true, // Boolean: true, false. Mobile only, by default, it's true (off canvas)
+      sidenavWidth: 240, // Number
+      headerShadow: true, // Boolean: true, false
+      sidenavShadow: false, // Boolean: true, false
+      colorOption: "15", // String: 11,12,13,14,15,16; 21,22,23,24,25,26; 31,32,33,34,35,36
+      theme: "light" // (WIP) String: light, gray, dark
+    }
   }
 };
 

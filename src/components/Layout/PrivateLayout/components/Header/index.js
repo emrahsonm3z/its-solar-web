@@ -140,10 +140,10 @@ class AppHeader extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  offCanvasMobileNav: state.settings.offCanvasMobileNav,
-  collapsedNav: state.settings.collapsedNav,
-  colorOption: state.settings.colorOption,
-  headerShadow: state.settings.headerShadow
+  offCanvasMobileNav: state.settings.privateLayout.offCanvasMobileNav,
+  collapsedNav: state.settings.privateLayout.collapsedNav,
+  colorOption: state.settings.privateLayout.colorOption,
+  headerShadow: state.settings.privateLayout.headerShadow
 });
 
 const mapDispatchToProps = dispatch => {

@@ -12,7 +12,7 @@ import {
   TOGGLE_FIXED_HEADER
 } from "./action";
 
-const initialSettings = APPCONFIG.settings;
+const initialSettings = APPCONFIG.settings.layout;
 
 export default function(state = initialSettings, action) {
   switch (action.type) {

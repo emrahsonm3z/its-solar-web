@@ -77,12 +77,12 @@ class AppSidenav extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  collapsedNav: state.settings.collapsedNav,
-  offCanvasNav: state.settings.offCanvasNav,
-  sidenavWidth: state.settings.sidenavWidth,
-  headerShadow: state.settings.headerShadow,
-  sidenavShadow: state.settings.sidenavShadow,
-  colorOption: state.settings.colorOption
+  collapsedNav: state.settings.privateLayout.collapsedNav,
+  offCanvasNav: state.settings.privateLayout.offCanvasNav,
+  sidenavWidth: state.settings.privateLayout.sidenavWidth,
+  headerShadow: state.settings.privateLayout.headerShadow,
+  sidenavShadow: state.settings.privateLayout.sidenavShadow,
+  colorOption: state.settings.privateLayout.colorOption
 });
 
 const mapDispatchToProps = dispatch => {
