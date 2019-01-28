@@ -6,7 +6,7 @@ import { Menu } from "antd";
 import Button from "@material-ui/core/Button";
 
 import APPCONFIG from "constants/appConfig";
-import { LOCATİONS } from "constants/uiComponents";
+import { LOCATİONS, SETTINGS } from "constants/uiComponents";
 import { toggleOffCanvasMobileNav } from "../../api/action";
 import MaterialIcon from "components/MaterialIcon";
 
@@ -19,7 +19,7 @@ class AppMenu extends React.Component {
     "/app/dashboard",
     "/app/alarm"
   ];
-  rootSubmenuKeys = ["/app/locations"];
+  rootSubmenuKeys = ["/app/locations", "/app/settings"];
 
   state = {
     openKeys: ["/app/dashboard"]
@@ -157,6 +157,17 @@ class AppMenu extends React.Component {
           {this.getNavMenuItems(LOCATİONS)}
         </SubMenu>
         <Menu.Divider />
+        <SubMenu
+          key="/app/settings"
+          title={
+            <Button className="nav-item">
+              <MaterialIcon icon="settings" />
+              <span className="nav-text">Settings</span>
+            </Button>
+          }
+        >
+          {this.getNavMenuItems(SETTINGS)}
+        </SubMenu>
       </Menu>
     );
   }

@@ -17,14 +17,19 @@ let Alarm = loadable({
   loading: LoadingComponent
 });
 
+let Settings = loadable({
+  loader: () => import("routes/admin/routes/settings"),
+  loading: LoadingComponent
+});
+
 class AppContent extends React.Component {
   render() {
     const { match } = this.props;
-
     return (
       <Content id="app-content">
         <Route exact path={`${match.url}/dashboard`} component={Dashboard} />
         <Route exact path={`${match.url}/alarm`} component={Alarm} />
+        <Route path={`${match.url}/settings`} component={Settings} />
       </Content>
     );
   }

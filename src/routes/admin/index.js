@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { Route } from "react-router-dom";
 import loadable from "react-loadable";
 import LoadingComponent from "components/Loading";
@@ -9,9 +9,9 @@ let Settings = loadable({
 });
 
 const Admin = ({ match }) => (
-  <Fragment>
+  <div>
     <Route path={`${match.url}/settings`} component={Settings} />
-  </Fragment>
+  </div>
 );
 
 export default Admin;

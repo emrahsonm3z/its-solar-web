@@ -17,7 +17,30 @@ export const LOCATİONS = [
   }
 ];
 
+const CHARTS = [
+  {
+    name: "Gauge",
+    path: "/app/settings/charts/gauge"
+  },
+  {
+    name: "Map",
+    path: "/app/settings/charts/map"
+  }
+];
+
+export const SETTINGS = [
+  {
+    name: "Layout",
+    path: "/app/settings/layout"
+  },
+  {
+    name: "Charts",
+    path: "/app/settings/charts",
+    children: CHARTS
+  }
+];
+
 // for UI Overview page
-const COMPONENTS = [...LOCATİONS];
+const COMPONENTS = [...LOCATİONS, ...SETTINGS];
 
 export default COMPONENTS;

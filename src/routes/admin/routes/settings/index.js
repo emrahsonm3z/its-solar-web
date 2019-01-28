@@ -8,10 +8,12 @@ let Charts = loadable({
   loading: LoadingComponent
 });
 
-const Settings = ({ match }) => (
-  <Fragment>
-    <Route path={`${match.url}/charts`} component={Charts} />
-  </Fragment>
-);
+const Settings = ({ match }) => {
+  return (
+    <Fragment>
+      <Route path={`${match.url}/charts`} component={Charts} />
+    </Fragment>
+  );
+};
 
 export default Settings;
