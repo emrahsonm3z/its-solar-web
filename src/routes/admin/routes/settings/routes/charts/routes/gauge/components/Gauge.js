@@ -20,7 +20,6 @@ const Gauge = ({ options, data }) => {
       value: data.value
     }
   ];
-  debugger;
 
   return (
     <ReactEcharts

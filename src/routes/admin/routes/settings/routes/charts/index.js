@@ -1,12 +1,12 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { Route } from "react-router-dom";
 
 import Gauge from "./routes/gauge";
 
 const Settings = ({ match }) => (
-  <Fragment>
+  <div>
     <Route path={`${match.url}/gauge`} component={Gauge} />
-  </Fragment>
+  </div>
 );
 
 export default Settings;

@@ -25,7 +25,6 @@ class GaugeCollection extends Component {
 
   render() {
     const { data } = this.state;
-    debugger;
     const { options } = this.props;
     return (
       <div

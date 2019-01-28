@@ -58,7 +58,7 @@ const AppRoute = ({
 
 class App extends Component {
   render() {
-    const { location, lang, userIsAuthenticated, theme } = this.props;
+    const { match, location, lang, userIsAuthenticated, theme } = this.props;
     const isRoot =
       location.pathname === "/" || location.pathname === "/app" ? true : false;
     if (isRoot) {
@@ -92,15 +92,15 @@ class App extends Component {
           <IntlProvider locale={lang} key={lang} messages={messages[lang]}>
             <Switch>
               <AppRoute
-                strict
-                path="/main"
+                // path="/main"
+                path={`${match.url}main`}
                 component={PublicLayout}
                 requireAuth={false}
                 userIsAuthenticated={userIsAuthenticated}
               />
               <AppRoute
-                strict
-                path="/app"
+                // path="/app"
+                path={`${match.url}app`}
                 component={PrivateLayout}
                 requireAuth={true}
                 userIsAuthenticated={userIsAuthenticated}

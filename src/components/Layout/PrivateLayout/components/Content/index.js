@@ -27,8 +27,8 @@ class AppContent extends React.Component {
     const { match } = this.props;
     return (
       <Content id="app-content">
-        <Route exact path={`${match.url}/dashboard`} component={Dashboard} />
-        <Route exact path={`${match.url}/alarm`} component={Alarm} />
+        <Route path={`${match.url}/dashboard`} component={Dashboard} />
+        <Route path={`${match.url}/alarm`} component={Alarm} />
         <Route path={`${match.url}/settings`} component={Settings} />
       </Content>
     );

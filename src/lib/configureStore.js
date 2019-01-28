@@ -4,7 +4,7 @@ import { routerMiddleware } from "react-router-redux";
 
 import { createLogger } from "redux-logger";
 //  import createHistory from hashHistory or BrowserHistory:
-import createHistory from "history/createBrowserHistory";
+import createHistory from "history/createHashHistory";
 import { composeWithDevTools } from "redux-devtools-extension";
 
 import reducers from "../reducers";

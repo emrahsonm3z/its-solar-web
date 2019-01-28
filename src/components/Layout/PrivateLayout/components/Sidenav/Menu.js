@@ -1,7 +1,6 @@
 import React from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import { Menu } from "antd";
 import Button from "@material-ui/core/Button";
 
@@ -80,7 +79,7 @@ class AppMenu extends React.Component {
     } else {
       return (
         <Menu.Item key={item.path}>
-          <Button className="nav-item" href={item.path}>
+          <Button className="nav-item" href={"#" + item.path}>
             <span>{item.menuName || item.name}</span>
           </Button>
         </Menu.Item>
@@ -128,13 +127,13 @@ class AppMenu extends React.Component {
         selectedKeys={[currentPathname]}
       >
         <Menu.Item key="/app/dashboard">
-          <Button component={Link} className="nav-item" to="/app/dashboard">
+          <Button className="nav-item" href="#/app/dashboard">
             <MaterialIcon icon="dashboard" />
             <span className="nav-text">Dashboard</span>
           </Button>
         </Menu.Item>
         <Menu.Item key="/app/alarm">
-          <Button component={Link} className="nav-item" to="/app/alarm">
+          <Button className="nav-item" href="#/app/alarm">
             <MaterialIcon icon="store" />
             <span className="nav-text">Alarm</span>
             <span className="nav-badge nav-badge-icon badge-right ml-1">

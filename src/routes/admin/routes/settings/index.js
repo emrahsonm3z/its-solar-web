@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { Route } from "react-router-dom";
 import loadable from "react-loadable";
 import LoadingComponent from "components/Loading";
@@ -10,9 +10,9 @@ let Charts = loadable({
 
 const Settings = ({ match }) => {
   return (
-    <Fragment>
+    <div>
       <Route path={`${match.url}/charts`} component={Charts} />
-    </Fragment>
+    </div>
   );
 };
 

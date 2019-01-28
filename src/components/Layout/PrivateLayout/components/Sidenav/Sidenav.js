@@ -1,6 +1,5 @@
 import React from "react";
 import { bindActionCreators } from "redux";
-import { Link } from "react-router-dom";
 import classnames from "classnames";
 import { connect } from "react-redux";
 import { Layout } from "antd";
@@ -54,9 +53,9 @@ class AppSidenav extends React.Component {
           })}
         >
           <Logo body="#343a40" glare="#343a40" />
-          <Link to="/app/dashboard" className="brand">
+          <a href="#/" className="brand">
             {APPCONFIG.brand}
-          </Link>
+          </a>
         </section>
 
         <div className="sidenav-content" ref="sidenavContent">
@@ -64,12 +63,12 @@ class AppSidenav extends React.Component {
         </div>
 
         <div className="sidenav-footer">
-          <Link to={DEMO.link}>
+          <a href={DEMO.link}>
             <MaterialIcon icon="help" className="nav-icon" />
             <span className="nav-text">
               <span>Help</span> & <span>Support</span>
             </span>
-          </Link>
+          </a>
         </div>
       </Sider>
     );
