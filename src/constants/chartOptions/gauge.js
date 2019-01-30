@@ -3,9 +3,6 @@ import { isMobile } from "react-device-detect";
 const highlight = "#03b7c9";
 
 const options = {
-  tooltip: {
-    formatter: "{a} <br/>{c} {b}"
-  },
   toolbox: {
     show: true,
     feature: {

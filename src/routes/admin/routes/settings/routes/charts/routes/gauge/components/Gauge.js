@@ -1,6 +1,8 @@
 import React from "react";
-
-import ReactEcharts from "echarts-for-react";
+import ReactEchartsCore from "echarts-for-react/lib/core";
+import echarts from "echarts/lib/echarts";
+import "echarts/lib/chart/gauge";
+import "echarts/lib/component/toolbox";
 
 const Gauge = ({ options, data }) => {
   let opt = Object.assign({}, options);
@@ -22,7 +24,8 @@ const Gauge = ({ options, data }) => {
   ];
 
   return (
-    <ReactEcharts
+    <ReactEchartsCore
+      echarts={echarts}
       option={opt}
       style={{
         minHeight: "140px",

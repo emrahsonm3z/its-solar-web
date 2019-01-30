@@ -25,6 +25,10 @@ const CHARTS = [
   {
     name: "Map",
     path: "/app/settings/charts/map"
+  },
+  {
+    name: "Line",
+    path: "/app/settings/charts/line"
   }
 ];
 

@@ -33,6 +33,7 @@
     "graphql-tag": "2.10.0",
     "history": "4.7.2",
     "jwt-decode": "2.2.0",
+    "moment": "^2.24.0",
     "rc-queue-anim": "1.6.10",
     "react": "16.7.0",
     "react-apollo": "2.3.3",

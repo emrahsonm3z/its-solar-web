@@ -1,6 +1,14 @@
 import React, { Component } from "react";
-import ReactEcharts from "echarts-for-react";
-import echarts from "echarts";
+import ReactEchartsCore from "echarts-for-react/lib/core";
+import echarts from "echarts/lib/echarts";
+import "echarts/lib/chart/effectScatter";
+import "echarts/lib/component/graphic";
+import "echarts/lib/component/tooltip";
+import "echarts/lib/component/geo";
+import "echarts/lib/component/title";
+import "echarts/lib/component/visualMap";
+import "echarts/lib/component/toolbox";
+
 import { isMobile } from "react-device-detect";
 
 import createMockDatas from "./mock";
@@ -24,7 +32,6 @@ export default class Map extends Component {
     this.registerMap();
     this.state = this.getInitialState();
   }
-  timeTicket = null;
   getInitialState = () => ({ option: this.getOption() });
 
   registerMap = () => {
@@ -176,9 +183,11 @@ export default class Map extends Component {
           }
         }
       },
-      graphic:
-        // !isMobile &&
-        data.reduce(
+      graphic: data
+        .sort(function(a, b) {
+          return b.monthly - a.monthly;
+        })
+        .reduce(
           (acc, item, index) => {
             acc.push(
               {
@@ -334,7 +343,8 @@ export default class Map extends Component {
     return (
       <div className="examples">
         <div className="parent">
-          <ReactEcharts
+          <ReactEchartsCore
+            echarts={echarts}
             option={this.state.option}
             style={{ height: "700px", width: "100%" }}
             className="react_for_echarts"
