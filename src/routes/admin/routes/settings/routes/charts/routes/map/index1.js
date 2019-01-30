@@ -52,6 +52,11 @@ export default class Map extends Component {
   getOption = () => {
     return {
       backgroundColor: "#404a59",
+      // animation: true,
+      // animationDuration: 1000,
+      // animationEasing: "cubicInOut",
+      // animationDurationUpdate: 1000,
+      // animationEasingUpdate: "cubicInOut",
       title: {
         text: "Turkey",
         subtext: "ITS Panels Map",
@@ -71,7 +76,7 @@ export default class Map extends Component {
         formatter: function(params) {
           console.log(params);
 
-          let ht = `<div style="background: rgba(0, 0, 0, .8); max-width: 200px; color: #fff;border-radius: 5%;">
+          let ht = `<div style="background: rgba(0, 0, 0, .8); max-width: 200px; color: #fff;">
           <div style="padding: 15px;">
           <div>Location: ${params.data.name}</div>
           <div>Daily: ${params.data.daily} ${params.data.unit}</div>
@@ -102,22 +107,6 @@ export default class Map extends Component {
           restore: {},
           saveAsImage: {}
         }
-      },
-      visualMap: {
-        type: "piecewise",
-        seriesIndex: 0,
-        min: 200,
-        max: 400,
-        calculable: true,
-        color: ["#ff3333", "orange", "yellow", "lime", "aqua"],
-        textStyle: {
-          color: "#fff"
-        },
-        formatter: function(value, value2) {
-          return value + " - " + value2 + " kW";
-        },
-        showLabel: true,
-        text: ["Günlük Üretim"] //
       },
       geo: {
         map: "turkey",
@@ -176,125 +165,216 @@ export default class Map extends Component {
           }
         }
       },
-      graphic:
-        // !isMobile &&
-        data.reduce(
-          (acc, item, index) => {
-            acc.push(
-              {
-                type: "text",
-                z: 100,
-                bottom: isMobile ? `${1 + index * 3}%` : "",
-                top: isMobile ? "" : `${11 + index * 10}%`,
-                left: isMobile ? "" : "2%",
-                right: isMobile ? "30%" : "",
-                style: {
-                  fill: "#cecece",
-                  text: item.name,
-                  font: 'calc(.5vw + 10px) "Roboto", sans-serif'
-                }
-              },
-              {
-                type: "text",
-                z: 100,
-                bottom: isMobile ? `${1 + index * 3}%` : "",
-                top: isMobile ? "" : `${14 + index * 10}%`,
-                left: isMobile ? "75%" : "2%",
-                style: {
-                  fill: "#fefefe",
-                  font: `${
-                    isMobile ? "calc(.5vw + 10px)" : "calc(.5vw + 14px)"
-                  } "Roboto", sans-serif`,
-                  text: item.monthly + " " + item.unit
-                }
-              }
-            );
-            return acc;
+      visualMap: {
+        min: 200,
+        max: 400,
+        calculable: true,
+        color: ["#ff3333", "orange", "yellow", "lime", "aqua"],
+        textStyle: {
+          color: "#fff"
+        }
+      },
+      xAxis: {
+        show: false
+        // axisLine: {
+        //   show: false,
+        //   lineStyle: {
+        //     color: "rgba(121,121,121,0.3)"
+        //     //color:'red'
+        //   }
+        // },
+        // splitLine: {
+        //   show: false
+        // }
+      },
+      yAxis: {
+        type: "category",
+        inverse: true,
+        nameGap: 16,
+        axisLine: {
+          show: false,
+          lineStyle: {
+            color: "#ddd"
+          }
+        },
+        axisTick: {
+          show: false,
+          lineStyle: {
+            color: "#ddd"
+          }
+        },
+        axisLabel: {
+          interval: 0,
+          margin: 125,
+          textStyle: {
+            color: "#ddd",
+            align: "left",
+            fontSize: 12
           },
-          [
-            {
-              type: "text",
-              z: 100,
-              bottom: isMobile ? "19%" : "",
-              top: isMobile ? "" : "7%",
-              left: isMobile ? "60%" : "2%",
-              style: {
-                fill: "#00ff00",
-                text: "AYLIK ÜRETİM",
-                font: 'calc(.5vw + 10px) "Roboto", sans-serif'
-              }
+          rich: {
+            a: {
+              color: "#fff",
+              backgroundColor: "#FAAA39",
+              width: 20,
+              height: 20,
+              align: "center",
+              borderRadius: 2
+            },
+            b: {
+              color: "#fff",
+              backgroundColor: "#4197FD",
+              width: 20,
+              height: 20,
+              align: "center",
+              borderRadius: 2
             }
-          ]
-        ),
-      // [
-      //   {
-      //     type: "text",
-      //     z: 100,
-      //     top: "7%",
-      //     left: "2%",
-      //     style: {
-      //       fill: "#fff",
-      //       text: data[0].name,
-      //       font: '1em "Roboto", sans-serif'
+          },
+          formatter: function(params) {
+            if (parseInt(params.slice(0, 1)) < 3) {
+              return [
+                "{a|" +
+                  (parseInt(params.slice(0, 1)) + 1) +
+                  "}" +
+                  "  " +
+                  params.slice(1)
+              ].join("\n");
+            } else {
+              return [
+                "{b|" +
+                  (parseInt(params.slice(0, 1)) + 1) +
+                  "}" +
+                  "  " +
+                  params.slice(1)
+              ].join("\n");
+            }
+          }
+        },
+        data: data.map(function(ele, index) {
+          return index + ele.name;
+        })
+      },
+      // yAxis: {
+      //   type: "category",
+      //   inverse: true,
+      //   nameGap: 16,
+      //   axisTick: {
+      //     show: false,
+      //     lineStyle: {
+      //       color: "rgba(121,121,121,0.3)"
       //     }
       //   },
-      //   {
-      //     type: "text",
-      //     z: 100,
-      //     top: "11%",
-      //     left: "2%",
-      //     style: {
-      //       fill: "#fefefe",
-      //       font: '2em "Roboto", sans-serif',
-      //       text: data[0].monthly + " " + data[0].unit
+      //   axisLine: {
+      //     show: false,
+      //     lineStyle: {
+      //       color: "rgba(121,121,121,0.3)"
+      //       //color:'red'
       //     }
       //   },
-      //   {
-      //     type: "text",
-      //     z: 100,
-      //     top: "25%",
-      //     left: "2%",
-      //     style: {
-      //       fill: "#fff",
-      //       text: data[1].name, //China
-      //       font: '1em "Roboto", sans-serif'
+      //   axisLabel: {
+      //     show: false,
+      //     textStyle: {
+      //       //  color: '#ddd'
       //     }
       //   },
-      //   {
-      //     type: "text",
-      //     z: 100,
-      //     top: "29%",
-      //     left: "2%",
-      //     style: {
-      //       fill: "#fefefe",
-      //       text: data[1].monthly + " " + data[1].unit,
-      //       font: '2em "Roboto", sans-serif'
-      //     }
-      //   },
-      //   {
-      //     type: "text",
-      //     z: 100,
-      //     top: "43%",
-      //     left: "2%",
-      //     style: {
-      //       fill: "#fff",
-      //       text: data[2].name, //United States
-      //       font: '1em "Roboto", sans-serif'
-      //     }
-      //   },
-      //   {
-      //     type: "text",
-      //     z: 100,
-      //     top: "47%",
-      //     left: "2%",
-      //     style: {
-      //       fill: "#fefefe",
-      //       text: data[2].monthly + " " + data[2].unit,
-      //       font: '2em "Roboto", sans-serif'
-      //     }
-      //   }
-      // ],
+      //   data: data
+      //     .map(function(ele) {
+      //       return ele.name;
+      //     })
+      //     .reverse()
+      // },
+      grid: {
+        left: "15%",
+        right: "73%",
+        top: "15%",
+        height: "auto",
+        bottom: "56%"
+      },
       series: [
+        // {
+        //   type: "pie",
+        //   center: ["20%", "25%"],
+        //   //selectedMode: 'single',
+        //   radius: ["12%", "20%"],
+
+        //   data: this.convertData(
+        //     data.sort(function(a, b) {
+        //       return b.daily - a.daily;
+        //     })
+        //   )
+        // },
+        {
+          id: "bar",
+          type: "bar",
+          roam: false,
+          visualMap: false,
+          zlevel: 2,
+          barMaxWidth: 5,
+          barGap: 0,
+          label: {
+            show: true,
+            position: "right",
+            color: "#fff",
+            formatter: function(p) {
+              return p.value + " kW";
+            }
+          },
+          itemStyle: {
+            color: function(params) {
+              // build a color map as your need.
+              const colorList = [
+                {
+                  colorStops: [
+                    {
+                      offset: 0,
+                      color: "#FFD119" // 0% 处的颜色
+                    },
+                    {
+                      offset: 1,
+                      color: "#FFAC4C" // 100% 处的颜色
+                    }
+                  ]
+                },
+                {
+                  colorStops: [
+                    {
+                      offset: 0,
+                      color: "#00C0FA" // 0% 处的颜色
+                    },
+                    {
+                      offset: 1,
+                      color: "#2F95FA" // 100% 处的颜色
+                    }
+                  ]
+                }
+              ];
+              if (params.dataIndex < 3) {
+                return colorList[0];
+              } else {
+                return colorList[1];
+              }
+            },
+            barBorderRadius: 15
+          },
+          // label: {
+          //   normal: {
+          //     position: "insideLeft",
+          //     formatter: function(p) {
+          //       return p.name + " : " + p.value;
+          //     },
+          //     color: "#6f3071",
+          //     fontSize: 15
+          //     //color: '#000000'
+          //   }
+          // },
+          tooltip: { show: false },
+          data: data
+            .map(function(ele) {
+              return ele.monthly;
+            })
+            .sort(function(a, b) {
+              return a > b;
+            })
+        },
         {
           type: "effectScatter",
           coordinateSystem: "geo",
@@ -304,11 +384,13 @@ export default class Map extends Component {
             })
           ),
           symbolSize: function(val) {
-            console.log(val);
-            return window.innerWidth / 100 + 5;
+            return 15;
           },
           showEffectOn: "render",
           rippleEffect: {
+            // period: 3,
+            // brushType: "stroke",
+            // scale: 4
             period: 10,
             scale: 4,
             brushType: "fill"
@@ -336,7 +418,7 @@ export default class Map extends Component {
         <div className="parent">
           <ReactEcharts
             option={this.state.option}
-            style={{ height: "700px", width: "100%" }}
+            style={{ height: "500px", width: "100%" }}
             className="react_for_echarts"
           />
         </div>
