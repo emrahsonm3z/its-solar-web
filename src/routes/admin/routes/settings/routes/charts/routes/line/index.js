@@ -106,32 +106,57 @@ class Line extends React.Component {
         textStyle: {
           fontSize: isMobile ? 8 : 12
         },
-        pieces: [
-          {
-            gt: 0,
-            lte: 200,
-            color: "#cecece"
-          },
-          {
-            gt: 200,
-            lte: 400,
-            color: "#ffde33"
-          },
-          {
-            gt: 400,
-            lte: 600,
-            color: "#096"
-          },
-          {
-            gt: 600,
-            lte: 800,
-            color: "#cc0033"
-          },
-          {
-            gt: 800,
-            color: "#660099"
-          }
-        ]
+        pieces: (function() {
+          const colorList = [
+            "#3F88C5",
+            "#FFBA08",
+            "#136F63",
+            "#D00000",
+            "#032B43"
+          ];
+
+          return colorList.reduce((acc, val, index) => {
+            if (index === colorList.length - 1)
+              acc.push({
+                gt: index * 200,
+                color: val
+              });
+            else
+              acc.push({
+                gt: index * 200,
+                lte: (index + 1) * 200,
+                color: val
+              });
+
+            return acc;
+          }, []);
+        })()
+        // pieces: [
+        //   {
+        //     gt: 0,
+        //     lte: 200,
+        //     color: "#cecece"
+        //   },
+        //   {
+        //     gt: 200,
+        //     lte: 400,
+        //     color: "#ffde33"
+        //   },
+        //   {
+        //     gt: 400,
+        //     lte: 600,
+        //     color: "#096"
+        //   },
+        //   {
+        //     gt: 600,
+        //     lte: 800,
+        //     color: "#cc0033"
+        //   },
+        //   {
+        //     gt: 800,
+        //     color: "#660099"
+        //   }
+        //]
       },
       legend: {
         data: ["Today", "Yesterday"],
@@ -147,7 +172,7 @@ class Line extends React.Component {
           type: "line",
           smooth: true,
           lineStyle: {
-            normal: { type: "solid" }
+            normal: { type: "solid", width: 5 }
           },
           markPoint: {
             data: [
@@ -183,7 +208,7 @@ class Line extends React.Component {
           },
           lineStyle: {
             normal: {
-              width: 3
+              width: 4
             }
           }
         }
