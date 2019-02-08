@@ -37,8 +37,10 @@
     "rc-queue-anim": "1.6.10",
     "react": "16.7.0",
     "react-apollo": "2.3.3",
+    "react-data-export": "^0.5.0",
     "react-device-detect": "^1.6.2",
     "react-dom": "16.7.0",
+    "react-html-table-to-excel": "^2.0.0",
     "react-intl": "2.7.2",
     "react-loadable": "5.5.0",
     "react-particles-js": "2.4.2",
@@ -47,10 +49,12 @@
     "react-router-dom": "4.2.2",
     "react-router-redux": "5.0.0-alpha.9",
     "react-scripts": "2.1.1",
+    "react-table": "^6.9.0",
     "recompose": "0.30.0",
     "redux": "3.7.2",
     "redux-thunk": "2.2.0",
-    "smoothscroll-polyfill": "0.4.3"
+    "smoothscroll-polyfill": "0.4.3",
+    "string_decoder": "^1.2.0"
   },
   "devDependencies": {
     "@material/elevation": "0.43.0",
@@ -64,6 +68,7 @@
     "react-app-rewire-provide-plugin": "1.0.0",
     "react-app-rewired": "1.5.2",
     "react-hot-loader": "4.6.3",
+    "react-to-print": "^2.0.0-alpha-6",
     "redux-devtools-extension": "2.13.7",
     "redux-logger": "3.0.6"
   },

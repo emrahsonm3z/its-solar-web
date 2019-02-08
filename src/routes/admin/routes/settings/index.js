@@ -8,10 +8,16 @@ let Charts = loadable({
   loading: LoadingComponent
 });
 
+let Tables = loadable({
+  loader: () => import("./routes/table/"),
+  loading: LoadingComponent
+});
+
 const Settings = ({ match }) => {
   return (
     <div>
       <Route path={`${match.url}/charts`} component={Charts} />
+      <Route path={`${match.url}/table`} component={Tables} />
     </div>
   );
 };

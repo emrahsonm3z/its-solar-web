@@ -31,7 +31,12 @@ const CHARTS = [
     path: "/app/settings/charts/line"
   }
 ];
-
+const TABLES = [
+  {
+    name: "React Table",
+    path: "/app/settings/table/react-table"
+  }
+];
 export const SETTINGS = [
   {
     name: "Layout",
@@ -41,6 +46,11 @@ export const SETTINGS = [
     name: "Charts",
     path: "/app/settings/charts",
     children: CHARTS
+  },
+  {
+    name: "Tables",
+    path: "/app/settings/table",
+    children: TABLES
   }
 ];
 
