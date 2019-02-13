@@ -5,7 +5,7 @@ import ReactTable from "react-table";
 import "react-table/react-table.css";
 
 import createMockData from "./mock";
-import ExportToExcel from "./components/ExportToExcel";
+// import ExportToExcel from "./components/ExportToExcel";
 
 import "./style.css";
 // import ReactDataExport from "./components/ReactDataExport";

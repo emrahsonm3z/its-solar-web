@@ -35,6 +35,10 @@ const TABLES = [
   {
     name: "React Table",
     path: "/app/settings/table/react-table"
+  },
+  {
+    name: "SyncFusion Grid",
+    path: "/app/settings/table/syncfusion-grid"
   }
 ];
 export const SETTINGS = [

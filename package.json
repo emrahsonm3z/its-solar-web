@@ -14,6 +14,8 @@
     "@material-ui/core": "3.9.0",
     "@material-ui/icons": "3.0.2",
     "@material-ui/lab": "^3.0.0-alpha.28",
+    "@syncfusion/ej2-base": "^16.4.52",
+    "@syncfusion/ej2-react-grids": "^16.4.52",
     "antd": "3.12.4",
     "apollo-cache-inmemory": "1.3.12",
     "apollo-client": "2.4.8",
@@ -53,8 +55,7 @@
     "recompose": "0.30.0",
     "redux": "3.7.2",
     "redux-thunk": "2.2.0",
-    "smoothscroll-polyfill": "0.4.3",
-    "string_decoder": "^1.2.0"
+    "smoothscroll-polyfill": "0.4.3"
   },
   "devDependencies": {
     "@material/elevation": "0.43.0",

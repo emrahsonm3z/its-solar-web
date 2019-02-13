@@ -1,0 +1,53 @@
+.e-grid .e-headercell,
+.e-grid .e-detailheadercell {
+  padding: 0 6px 0 !important;
+}
+
+.e-grid .e-gridheader .e-rightalign.e-fltr-icon .e-sortfilterdiv {
+  margin: -15px 0px !important;
+}
+.e-grid .e-gridheader .e-sortfilter .e-headercelldiv {
+  padding-right: 0;
+}
+.e-grid .e-gridheader .e-fltr-icon .e-sortfilterdiv {
+  margin: -15px 15px;
+}
+
+.e-image {
+  height: 13px;
+  width: 14px;
+}
+
+.e-grid-progress-bar__item {
+  height: 10px;
+  min-width: 5%;
+}
+
+.e-grid-progress-bar__item--success {
+  background-color: #2a9f4b;
+}
+
+.e-grid-progress-bar__item--warning {
+  background-color: #fbdf0b;
+}
+
+.e-grid-progress-bar__item--danger {
+  background-color: #bd2626;
+}
+
+.e-grid-msg {
+  font-family: "Segoe UI", "GeezaPro", "DejaVu Serif", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  opacity: 0.95;
+  color: #333;
+}
+
+.e-grid .e-headercelldiv {
+  text-align: center !important;
+}
+
+.e-grid-detailtable__title,
+.e-grid-detailtable__value {
+  padding: 5px;
+}

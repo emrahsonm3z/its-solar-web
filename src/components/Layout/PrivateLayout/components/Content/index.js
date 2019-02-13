@@ -6,6 +6,10 @@ import { Layout } from "antd";
 
 import LoadingComponent from "components/Loading";
 
+import LocationView from "routes/location";
+import CentralView from "routes/central";
+import InverterView from "routes/inverter";
+
 const { Content } = Layout;
 
 let Dashboard = loadable({
@@ -27,6 +31,23 @@ class AppContent extends React.Component {
     const { match } = this.props;
     return (
       <Content id="app-content">
+        <Route
+          exact
+          path={`${match.url}/panels/:pathParam1?`}
+          component={LocationView}
+        />
+        <Route
+          exact
+          path={`${match.url}/panels/:pathParam1?/central-:pathParam2?`}
+          component={CentralView}
+        />
+        <Route
+          exact
+          path={`${
+            match.url
+          }/panels/:pathParam1?/central-:pathParam2?/inverter-:pathParam3?`}
+          component={InverterView}
+        />
         <Route path={`${match.url}/dashboard`} component={Dashboard} />
         <Route path={`${match.url}/alarm`} component={Alarm} />
         <Route path={`${match.url}/settings`} component={Settings} />
