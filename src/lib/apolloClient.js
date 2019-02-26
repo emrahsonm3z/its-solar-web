@@ -8,9 +8,9 @@ import { createHttpLink } from "apollo-link-http";
 import { onError } from "apollo-link-error";
 import { InMemoryCache } from "apollo-cache-inmemory";
 
-import { APP_HTTP_URI, NODE_ENV /*, APP_SUBSCRIPTION_URI */ } from "config/env";
+import { APP_HTTP_URI, NODE_ENV } from "config/env";
 
-const httplink = createHttpLink({ uri: APP_HTTP_URI });
+const httpLink = createHttpLink({ uri: APP_HTTP_URI });
 // region get user token from localStorage
 let token; // cached token to access localStorage just once
 async function getUserToken() {
@@ -77,14 +77,26 @@ const errorLink = onError(
 //   );
 // };
 
-// const link = ApolloLink.split(
-//   /*hasSubscriptionOperation, wsLink,*/
-//   authLink,
-//   errorLink,
-//   httpLink
-// );
+// // const link = ApolloLink.split(
+// //   /*hasSubscriptionOperation, wsLink,*/
+// //   authLink,
+// //   errorLink,
+// //   httpLink
+// // );
 
-const link = from([authLink, errorLink, httplink]);
+// const wsClient = new SubscriptionClient(APP_SUBSCRIPTION_URI, {
+//   reconnect: true,
+//   connectionParams: {
+//     authorization: localStorage.getItem("solar_token")
+//       ? `Bearer ${localStorage.getItem("solar_token")}`
+//       : ""
+//   }
+// });
+
+// const wsLink = new WebSocketLink(wsClient);
+// const terminatingLink = split(hasSubscriptionOperation, wsLink, httpLink);
+
+const link = from([authLink, errorLink, httpLink]);
 
 const client = new ApolloClient({
   link,

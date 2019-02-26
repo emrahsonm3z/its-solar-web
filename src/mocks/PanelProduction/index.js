@@ -1,5 +1,4 @@
 import moment from "moment";
-
 const LOCATİONS = [
   "SALİHLİ",
   "POLATLI",
@@ -83,14 +82,14 @@ const createMockData = () => {
         lastUpdated = moment(moment().set("m", 0)).fromNow();
 
         invStrings = Object.values(STRINGS).reduce((acc, curr) => {
-          const stringValue = (Math.random() * 3) / 2;
+          const stringValue = Math.random() * 3;
 
           acc.push({
             ...curr,
             value:
               lastTwoHour === 0
                 ? 0
-                : stringValue > 0.5
+                : stringValue > 1
                   ? stringValue.toFixed(6)
                   : 0
           });

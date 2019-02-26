@@ -39,6 +39,10 @@ const TABLES = [
   {
     name: "SyncFusion Grid",
     path: "/app/settings/table/syncfusion-grid"
+  },
+  {
+    name: "Production by location",
+    path: "/app/settings/table/syncfusion-grid-location"
   }
 ];
 export const SETTINGS = [

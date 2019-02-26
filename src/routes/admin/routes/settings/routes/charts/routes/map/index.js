@@ -13,7 +13,7 @@ import { isMobile } from "react-device-detect";
 
 import createMockDatas from "./mock";
 
-import turkeyMapData from "./tr-v3.json";
+import turkeyMapData from "./tr.json";
 
 const geoCoordMap = {
   SALİHLİ: [28.158319, 38.494787],

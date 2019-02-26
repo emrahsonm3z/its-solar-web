@@ -1,0 +1,24 @@
+query($criteria: SummaryCriteria) {
+  AllProductionSummary(input: $criteria) {
+    id
+    location
+    centralNo
+    inverterNo
+    lastOneHour
+    lastTwoHour
+    workingHour
+    forToday
+    yesterdayProduction
+    montly
+    status
+    progress {
+      stringsCount
+      workedStrings
+      strings {
+        id
+        name
+        value
+      }
+    }
+  }
+}

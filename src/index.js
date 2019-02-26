@@ -8,11 +8,13 @@ import * as serviceWorker from "./serviceWorker";
 
 import { checkIfUserIsAuthenticated } from "routes/user/api/action";
 import { checkLocale } from "./components/Locale/api/action";
+// import { createPanelProductionData } from "./mocks/api/action";
 
 const store = configureStore();
 
 store.dispatch(checkIfUserIsAuthenticated());
 store.dispatch(checkLocale());
+// store.dispatch(createPanelProductionData());
 
 render(
   <AppContainer>

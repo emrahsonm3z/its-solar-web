@@ -282,13 +282,13 @@ export default class Default extends SampleBase<{}, {}> {
                   },
                   {
                     field: "inverterNo",
-                    headerText: "Invertor",
+                    headerText: "Inverter",
                     template: this.invervorTemplate,
                     width: "90",
                     textAlign: "center"
                   }
                 ]}
-                headerText="Invertor"
+                headerText="Inverter"
                 textAlign="center"
               />
               <ColumnDirective

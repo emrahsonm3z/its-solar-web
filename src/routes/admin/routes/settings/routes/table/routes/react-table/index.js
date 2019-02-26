@@ -41,7 +41,7 @@ const columns = [
     },
     columns: [
       {
-        Header: "Invertor",
+        Header: "Inverter",
         columns: [
           {
             accessor: "id",
