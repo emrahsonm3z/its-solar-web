@@ -59,6 +59,10 @@ export const SETTINGS = [
     name: "Tables",
     path: "/app/settings/table",
     children: TABLES
+  },
+  {
+    name: "Weather Map",
+    path: "/app/settings/weather-map"
   }
 ];
 

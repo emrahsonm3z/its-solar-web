@@ -13,11 +13,17 @@ let Tables = loadable({
   loading: LoadingComponent
 });
 
+let WeatherMap = loadable({
+  loader: () => import("./routes/weather-map/"),
+  loading: LoadingComponent
+});
+
 const Settings = ({ match }) => {
   return (
     <div>
       <Route path={`${match.url}/charts`} component={Charts} />
       <Route path={`${match.url}/table`} component={Tables} />
+      <Route path={`${match.url}/weather-map`} component={WeatherMap} />
     </div>
   );
 };

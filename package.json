@@ -29,6 +29,7 @@
     "classnames": "2.2.6",
     "core-js": "2.5.7",
     "date-fns": "1.30.1",
+    "dotenv": "^6.2.0",
     "echarts": "^4.2.0-rc.2",
     "echarts-for-react": "^2.0.15-beta.0",
     "flat": "4.1.0",
