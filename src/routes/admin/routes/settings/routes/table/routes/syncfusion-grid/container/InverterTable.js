@@ -1,6 +1,8 @@
 import React, { Fragment } from "react";
+import { connect } from "react-redux";
 import { Query } from "react-apollo";
 import moment from "moment";
+import { intlShape, injectIntl } from "react-intl";
 
 import { closest, isNullOrUndefined } from "@syncfusion/ej2-base";
 import {
@@ -28,7 +30,7 @@ import DEMO from "constants/demoData";
 
 import GET_INVERTERS_SUMMERY from "../gql/getSummaries.gql";
 
-import "../style.css";
+import "../style.scss";
 
 const InvertersSummeryQuery = ({ children }) => (
   <Query query={GET_INVERTERS_SUMMERY} pollInterval={5000}>
@@ -54,8 +56,9 @@ const OrderProduction = {
 };
 
 class InverterTable extends SampleBase<{}, {}> {
-  constructor() {
-    super(...arguments);
+  constructor(props) {
+    super(props);
+    console.log(props);
     this.state = {
       order: OrderProduction.Inverter,
       columns: []
@@ -74,13 +77,19 @@ class InverterTable extends SampleBase<{}, {}> {
     });
     this.toolbarOptions = [
       "ColumnChooser",
+      // {
+      //   type: "ColumnChooser",
+      //   title: "Test"
+      // },
       "ExcelExport",
       "Print",
       {
         type: "Input",
         id: "bindingByInverter",
         template: new RadioButton({
-          label: "Invertera göre",
+          label: props.formatMessage({
+            id: "syncFusionGrid.productionTable.toolbar.bindingByInverter"
+          }),
           name: "bindingBy",
           checked: true,
           change: () => {
@@ -93,7 +102,9 @@ class InverterTable extends SampleBase<{}, {}> {
         type: "Input",
         id: "bindingByCentral",
         template: new RadioButton({
-          label: "Santrale göre",
+          label: props.formatMessage({
+            id: "syncFusionGrid.productionTable.toolbar.bindingByCentral"
+          }),
           name: "bindingBy",
           change: () => {
             this.setState({ order: OrderProduction.Central });
@@ -105,7 +116,9 @@ class InverterTable extends SampleBase<{}, {}> {
         type: "Input",
         id: "bindingByLocation",
         template: new RadioButton({
-          label: "Konuma göre",
+          label: props.formatMessage({
+            id: "syncFusionGrid.productionTable.toolbar.bindingByLocation"
+          }),
           name: "bindingBy",
           change: () => {
             this.setState({ order: OrderProduction.Location });
@@ -119,7 +132,8 @@ class InverterTable extends SampleBase<{}, {}> {
     this.pageOptions = {
       pageSize: 20,
       pageCount: 5,
-      pageSizes: ["5", "10", "20", "50", "All"]
+      // pageSizes: ["5", "10", "20", "50", "All"]
+      pageSizes: true
     };
     this.check = {
       type: "CheckBox"
@@ -180,6 +194,7 @@ class InverterTable extends SampleBase<{}, {}> {
           workingHour: 0,
           forToday: 0,
           yesterdayProduction: 0,
+          lastWeek: 0,
           montly: 0
         });
 
@@ -188,6 +203,7 @@ class InverterTable extends SampleBase<{}, {}> {
       item.workingHour = curr.workingHour;
       item.forToday += curr.forToday;
       item.yesterdayProduction += curr.yesterdayProduction;
+      item.lastWeek += curr.lastWeek;
       item.montly += curr.montly;
 
       return acc.set(key, item);
@@ -214,7 +230,6 @@ class InverterTable extends SampleBase<{}, {}> {
 
   excelQueryCellInfo = args => {
     if (args.column.field === "progress") {
-      console.log(args);
       args.value = `${args.value.workedStrings}/${args.value.stringsCount}`;
     }
   };
@@ -360,20 +375,25 @@ class InverterTable extends SampleBase<{}, {}> {
   };
 
   setColumns = order => {
+    const { formatMessage } = this.props;
     const cols = [
       {
         col: 0,
         columns: [
           {
             field: "location",
-            headerText: "Location",
+            headerText: formatMessage({
+              id: "syncFusionGrid.productionTable.columns.location"
+            }),
             template: this.locationTemplate,
             width: "130",
             textAlign: "left",
             filter: this.check
           }
         ],
-        headerText: "Inverter",
+        headerText: formatMessage({
+          id: "syncFusionGrid.productionTable.columns.InverterBlock"
+        }),
         textAlign: "center"
       },
       {
@@ -385,42 +405,66 @@ class InverterTable extends SampleBase<{}, {}> {
         columns: [
           {
             field: "lastOneHour",
-            headerText: "Last one hour",
+            headerText: formatMessage({
+              id: "syncFusionGrid.productionTable.columns.lastOneHour"
+            }),
             width: "130",
-            textAlign: "center"
+            textAlign: "center",
+            visible: false
           },
           {
             field: "lastTwoHour",
-            headerText: "Last two hours",
+            headerText: formatMessage({
+              id: "syncFusionGrid.productionTable.columns.lastTwoHour"
+            }),
             width: "130",
-            textAlign: "center"
+            textAlign: "center",
+            visible: false
           },
           {
             field: "workingHour",
-            headerText: "Working hour",
+            headerText: formatMessage({
+              id: "syncFusionGrid.productionTable.columns.workingHour"
+            }),
             width: "130",
             textAlign: "center"
           },
           {
             field: "forToday",
-            headerText: "Up to now",
+            headerText: formatMessage({
+              id: "syncFusionGrid.productionTable.columns.forToday"
+            }),
             width: "110",
             textAlign: "center"
           },
           {
             field: "yesterdayProduction",
-            headerText: "Yesterday",
+            headerText: formatMessage({
+              id: "syncFusionGrid.productionTable.columns.yesterdayProduction"
+            }),
+            width: "110",
+            textAlign: "center"
+          },
+          {
+            field: "lastWeek",
+            headerText: formatMessage({
+              id: "syncFusionGrid.productionTable.columns.lastWeek"
+            }),
             width: "110",
             textAlign: "center"
           },
           {
             field: "montly",
-            headerText: "Montly",
+            headerText: formatMessage({
+              id: "syncFusionGrid.productionTable.columns.montly"
+            }),
             width: "100",
             textAlign: "center"
           }
         ],
-        headerText: `Production (kWh)`,
+        headerText: `${formatMessage({
+          id: "syncFusionGrid.productionTable.columns.ProductionBlock"
+        })} (kWh)`,
         textAlign: "center"
       }
     ];
@@ -430,7 +474,9 @@ class InverterTable extends SampleBase<{}, {}> {
         if (item.col === 0)
           item.columns.push({
             field: "centralNo",
-            headerText: "Central",
+            headerText: formatMessage({
+              id: "syncFusionGrid.productionTable.columns.central"
+            }),
             template: this.centralTemplate,
             width: "90",
             textAlign: "center",
@@ -443,7 +489,9 @@ class InverterTable extends SampleBase<{}, {}> {
         if (item.col === 0)
           item.columns.push({
             field: "inverterNo",
-            headerText: "Inverter",
+            headerText: formatMessage({
+              id: "syncFusionGrid.productionTable.columns.Inverter"
+            }),
             template: this.invervorTemplate,
             width: "90",
             textAlign: "center",
@@ -455,7 +503,9 @@ class InverterTable extends SampleBase<{}, {}> {
             columns: [
               {
                 field: "status",
-                headerText: "Status",
+                headerText: formatMessage({
+                  id: "syncFusionGrid.productionTable.columns.status"
+                }),
                 width: "130",
                 textAlign: "left",
                 filter: this.status,
@@ -463,7 +513,9 @@ class InverterTable extends SampleBase<{}, {}> {
               },
               {
                 field: "progress",
-                headerText: "Progress",
+                headerText: formatMessage({
+                  id: "syncFusionGrid.productionTable.columns.progress"
+                }),
                 width: "200",
                 textAlign: "left",
                 allowFiltering: false,
@@ -471,7 +523,9 @@ class InverterTable extends SampleBase<{}, {}> {
                 sortComparer: this.sortComparer
               }
             ],
-            headerText: "Performance",
+            headerText: formatMessage({
+              id: "syncFusionGrid.productionTable.columns.PerformanceBlock"
+            }),
             textAlign: "center"
           });
       });
@@ -480,7 +534,14 @@ class InverterTable extends SampleBase<{}, {}> {
     this.setState({ columns: [...cols] });
   };
 
+  // created = args => {
+  //   debugger;
+  //   const columnchooser = document.querySelectorAll("[id^=columnchooser]")[0];
+  // };
+
   render() {
+    const { lang, formatMessage } = this.props;
+
     return (
       <div className="control-pane">
         <div className="control-section">
@@ -488,6 +549,8 @@ class InverterTable extends SampleBase<{}, {}> {
             // dataSource={this.bindData}
             dataSource={this.dataStateChange(this.props.data, this.state.order)}
             ref={grid => (this.gridInstance = grid)}
+            locale={lang === "tr" ? "tr-TR" : lang === "de" ? "de-DE" : "en-EN"}
+            // created={this.created}
             detailTemplate={this.state.order === 0 && this.gridTemplate}
             toolbar={this.toolbarOptions}
             toolbarClick={this.toolbarClick}
@@ -530,7 +593,10 @@ class InverterTable extends SampleBase<{}, {}> {
             style={{ textAlign: "center", padding: "16px" }}
           >
             <span className="e-grid-msg">
-              Load Time: {this.props.updatedTime}
+              {formatMessage({
+                id: "syncFusionGrid.productionTable.footer.loadTime"
+              })}
+              : {this.props.updatedTime}
             </span>
           </div>
         </div>
@@ -539,10 +605,34 @@ class InverterTable extends SampleBase<{}, {}> {
   }
 }
 
-export default () => (
-  <InvertersSummeryQuery>
-    {(summaries, updatedTime) => (
-      <InverterTable data={summaries} updatedTime={updatedTime} />
-    )}
-  </InvertersSummeryQuery>
+const Container = props => {
+  return (
+    <InvertersSummeryQuery>
+      {(summaries, updatedTime) => (
+        <InverterTable
+          data={summaries}
+          updatedTime={updatedTime}
+          lang={props.lang}
+          formatMessage={props.intl.formatMessage}
+        />
+      )}
+    </InvertersSummeryQuery>
+  );
+};
+
+Container.propTypes = {
+  intl: intlShape.isRequired
+};
+
+const mapStateToProps = state => {
+  return {
+    lang: state.locale.lang
+  };
+};
+
+export default injectIntl(
+  connect(
+    mapStateToProps,
+    null
+  )(Container)
 );

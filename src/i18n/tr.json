@@ -32,5 +32,34 @@
         "forgot": "E-posta adresinizi veya şifrenizi mi unuttunuz? Lütfen yönetici ile iletişime geçin."
       }
     }
+  },
+  "syncFusionGrid": {
+    "productionTable": {
+      "toolbar": {
+        "bindingByInverter": "Invertör bazlı grupla",
+        "bindingByCentral": "Santral bazlı grupla",
+        "bindingByLocation": "Konum bazlı grupla"
+      },
+      "columns": {
+        "InverterBlock": "Invertör",
+        "PerformanceBlock": "Performans",
+        "ProductionBlock": "Üretim",
+        "location": "Konum",
+        "central": "Santral",
+        "Inverter": "Invertör",
+        "status": "Durum",
+        "progress": "String değerleri",
+        "lastOneHour": "Son 1 saatlik",
+        "lastTwoHour": "Son 2 saatlik",
+        "workingHour": "Bugünkü çalışma süresi",
+        "forToday": "Bugünkü",
+        "yesterdayProduction": "Dünkü",
+        "lastWeek": "Haftalık",
+        "montly": "Aylık"
+      },
+      "footer": {
+        "loadTime": "Yüklenme Zamanı"
+      }
+    }
   }
 }

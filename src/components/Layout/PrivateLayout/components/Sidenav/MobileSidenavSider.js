@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { Layout, Icon } from "antd";
 
 import Logo from "components/Logo";
+import LocalesMenu from "components/Locale/components/LocalesMenu";
 import APPCONFIG from "constants/appConfig";
 import DEMO from "constants/demoData";
 import AppMenu from "./Menu";
@@ -45,6 +46,7 @@ class AppSidenav extends React.Component {
 
         <div className="sidenav-content" ref="sidenavContent">
           <AppMenu isMobileNav={true} />
+          <LocalesMenu isPrivate={true} />
         </div>
 
         <div className="sidenav-footer">

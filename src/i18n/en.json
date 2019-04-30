@@ -32,5 +32,34 @@
         "forgot": "Forgot your email or password? Please contact the administrator."
       }
     }
+  },
+  "syncFusionGrid": {
+    "productionTable": {
+      "toolbar": {
+        "bindingByInverter": "Inverter based group",
+        "bindingByCentral": "Power plant based group",
+        "bindingByLocation": "Location-based group"
+      },
+      "columns": {
+        "InverterBlock": "Inverter",
+        "PerformanceBlock": "Performance",
+        "ProductionBlock": "Production",
+        "location": "Location",
+        "central": "Central",
+        "Inverter": "Inverter",
+        "status": "Status",
+        "progress": "String values",
+        "lastOneHour": "Last 1 hour",
+        "lastTwoHour": "Last 2 hours",
+        "workingHour": "Working time today",
+        "forToday": "Today's",
+        "yesterdayProduction": "Yesterday's",
+        "lastWeek": "Weekly",
+        "montly": "Monthly"
+      },
+      "footer": {
+        "loadTime": "Load Time"
+      }
+    }
   }
 }

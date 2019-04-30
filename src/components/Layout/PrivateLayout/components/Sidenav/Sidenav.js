@@ -6,6 +6,7 @@ import { Layout } from "antd";
 
 import Logo from "components/Logo";
 import MaterialIcon from "components/MaterialIcon";
+import LocalesMenu from "components/Locale/components/LocalesMenu";
 import APPCONFIG from "constants/appConfig";
 import DEMO from "constants/demoData";
 import { toggleCollapsedNav, toggleOffCanvasNav } from "../../api/action";
@@ -60,6 +61,7 @@ class AppSidenav extends React.Component {
 
         <div className="sidenav-content" ref="sidenavContent">
           <AppMenu />
+          <LocalesMenu isPrivate={true} />
         </div>
 
         <div className="sidenav-footer">

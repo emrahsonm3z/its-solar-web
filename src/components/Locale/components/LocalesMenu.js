@@ -3,6 +3,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import classnames from "classnames";
 import { compose } from "recompose";
+import PropTypes from "prop-types";
 
 import { withStyles } from "@material-ui/core/styles";
 import Fab from "@material-ui/core/Fab";
@@ -23,6 +24,10 @@ const styles = theme => ({
   },
   selectedFab: {
     backgroundColor: theme.palette.primary.main
+  },
+  privateLocalesMenu: {
+    textAlign: "center",
+    margin: "10px"
   }
 });
 
@@ -48,10 +53,10 @@ class LocalesMenu extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, isPrivate } = this.props;
     const { selected } = this.state;
     return (
-      <div>
+      <div className={classnames({ [classes.privateLocalesMenu]: isPrivate })}>
         {languages.map(lang => {
           return (
             <Fab
@@ -69,6 +74,14 @@ class LocalesMenu extends React.Component {
     );
   }
 }
+
+LocalesMenu.defaultProps = {
+  isPrivate: false
+};
+
+LocalesMenu.propTypes = {
+  isPrivate: PropTypes.bool.isRequired
+};
 
 const mapDispatchToProps = dispatch => {
   return {

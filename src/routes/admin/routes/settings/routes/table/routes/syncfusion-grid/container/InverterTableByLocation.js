@@ -28,7 +28,7 @@ import DEMO from "constants/demoData";
 
 import GET_INVERTERS_SUMMERY from "../gql/getSummaries.gql";
 
-import "../style.css";
+import "../style.scss";
 
 const InvertersSummeryQuery = ({ children }) => (
   <Query
@@ -172,6 +172,7 @@ class InverterTable extends SampleBase<{}, {}> {
           workingHour: 0,
           forToday: 0,
           yesterdayProduction: 0,
+          lastWeek: 0,
           montly: 0
         });
 
@@ -180,6 +181,7 @@ class InverterTable extends SampleBase<{}, {}> {
       item.workingHour = curr.workingHour;
       item.forToday += curr.forToday;
       item.yesterdayProduction += curr.yesterdayProduction;
+      item.lastWeek += curr.lastWeek;
       item.montly += curr.montly;
 
       return acc.set(key, item);
@@ -393,6 +395,12 @@ class InverterTable extends SampleBase<{}, {}> {
           {
             field: "yesterdayProduction",
             headerText: "Yesterday",
+            width: "110",
+            textAlign: "center"
+          },
+          {
+            field: "lastWeek",
+            headerText: "Last week",
             width: "110",
             textAlign: "center"
           },

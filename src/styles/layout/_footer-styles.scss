@@ -2,6 +2,7 @@
 .app-footer {
   line-height: 1.25rem;
   padding: 1.625rem $grid-gutter-width;
+  flex-shrink: 0;
 
   a {
     color: $body-color;

@@ -22,7 +22,7 @@ const APPCONFIG = {
     layout: {
       layout: "1", // String: 1, 2, 3, 4 and add your own
       boxedLayout: false, // Boolean: true, false
-      fixedSidenav: false, // Boolean: true, false
+      fixedSidenav: true, // Boolean: true, false
       fixedHeader: false, // Boolean: true, false
       collapsedNav: false, // Boolean: true, false
       offCanvasNav: false, // Boolean: true, false

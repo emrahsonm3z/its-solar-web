@@ -1,7 +1,7 @@
 .app-header {
   padding: 0;
   border: 0; // no border, otherwise other elements' height can only be ($l_header_height -1)
-
+  flex-shrink: 0;
   &.ant-layout-header {
     height: $l_header_height;
     line-height: $l_header_height;

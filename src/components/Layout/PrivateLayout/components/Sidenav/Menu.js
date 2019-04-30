@@ -1,6 +1,7 @@
 import React from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import { intlShape, injectIntl } from "react-intl";
 import { Menu } from "antd";
 import Button from "@material-ui/core/Button";
 
@@ -102,7 +103,12 @@ class AppMenu extends React.Component {
   };
 
   render() {
-    const { collapsedNav, colorOption, location } = this.props;
+    const {
+      collapsedNav,
+      colorOption,
+      location,
+      intl: { formatMessage }
+    } = this.props;
     // const mode = collapsedNav ? 'vertical' : 'inline';
     const menuTheme =
       ["31", "32", "33", "34", "35", "36"].indexOf(colorOption) >= 0
@@ -129,7 +135,9 @@ class AppMenu extends React.Component {
         <Menu.Item key="/app/dashboard">
           <Button className="nav-item" href="#/app/dashboard">
             <MaterialIcon icon="dashboard" />
-            <span className="nav-text">Dashboard</span>
+            <span className="nav-text">
+              {formatMessage({ id: "sidenav.dashboard" })}
+            </span>
           </Button>
         </Menu.Item>
         <Menu.Item key="/app/alarm">
@@ -172,6 +180,10 @@ class AppMenu extends React.Component {
   }
 }
 
+AppMenu.propTypes = {
+  intl: intlShape.isRequired
+};
+
 const mapStateToProps = state => {
   // console.log(state);
   return {
@@ -191,7 +203,9 @@ const mapDispatchToProps = dispatch => {
   );
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(AppMenu);
+export default injectIntl(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(AppMenu)
+);

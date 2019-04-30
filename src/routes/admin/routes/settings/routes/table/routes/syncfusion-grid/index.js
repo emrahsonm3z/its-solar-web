@@ -21,7 +21,7 @@ import createMockData from "./mock";
 import { SampleBase } from "./container/SampleBase";
 import DEMO from "constants/demoData";
 
-import "./style.css";
+import "./style.scss";
 
 export default class Default extends SampleBase<{}, {}> {
   constructor() {
@@ -343,6 +343,12 @@ export default class Default extends SampleBase<{}, {}> {
                   {
                     field: "yesterdayProduction",
                     headerText: "Yesterday",
+                    width: "110",
+                    textAlign: "center"
+                  },
+                  {
+                    field: "lastWeek",
+                    headerText: "Last week",
                     width: "110",
                     textAlign: "center"
                   },

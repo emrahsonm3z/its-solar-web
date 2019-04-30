@@ -9,6 +9,7 @@ query($criteria: SummaryCriteria) {
     workingHour
     forToday
     yesterdayProduction
+    lastWeek
     montly
     status
     progress {

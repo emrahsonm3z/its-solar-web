@@ -6,6 +6,9 @@ import { addLocaleData } from "react-intl";
 import en from "react-intl/locale-data/en";
 import de from "react-intl/locale-data/de";
 import tr from "react-intl/locale-data/tr";
+import { L10n } from "@syncfusion/ej2-base";
+import syncFusionGridLocaleTR from "routes/admin/routes/settings/routes/table/routes/syncfusion-grid/locale/gridLocaleConfig/tr.json";
+import syncFusionGridLocaleDE from "routes/admin/routes/settings/routes/table/routes/syncfusion-grid/locale/gridLocaleConfig/de.json";
 import classnames from "classnames";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 
@@ -22,6 +25,12 @@ import Error404 from "../routes/exception/routes/404";
 addLocaleData(en);
 addLocaleData(tr);
 addLocaleData(de);
+
+// Syncfusion component globalization load
+L10n.load({
+  "tr-TR": syncFusionGridLocaleTR,
+  "de-DE": syncFusionGridLocaleDE
+});
 
 const AppRoute = ({
   userIsAuthenticated,

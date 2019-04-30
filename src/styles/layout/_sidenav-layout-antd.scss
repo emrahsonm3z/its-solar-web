@@ -27,6 +27,9 @@
     z-index: 1;
     flex: 1 1 auto;
     overflow: auto;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
   }
 
   // remove ant menu border, and use custom, because antd border only applies to menu
