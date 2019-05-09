@@ -198,7 +198,7 @@ export default class Map extends Component {
                 left: isMobile ? "" : "2%",
                 right: isMobile ? "30%" : "",
                 style: {
-                  fill: "#cecece",
+                  fill: "#cececc",
                   text: item.name,
                   font: 'calc(.5vw + 10px) "Roboto", sans-serif'
                 }

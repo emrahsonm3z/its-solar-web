@@ -37,25 +37,35 @@
     "productionTable": {
       "toolbar": {
         "bindingByInverter": "Inverter based group",
-        "bindingByCentral": "Power plant based group",
+        "bindingByCompany": "Company based group",
         "bindingByLocation": "Location-based group"
+      },
+      "pager": {
+        "All": "All"
       },
       "columns": {
         "InverterBlock": "Inverter",
         "PerformanceBlock": "Performance",
         "ProductionBlock": "Production",
-        "location": "Location",
-        "central": "Central",
-        "Inverter": "Inverter",
-        "status": "Status",
-        "progress": "String values",
-        "lastOneHour": "Last 1 hour",
-        "lastTwoHour": "Last 2 hours",
-        "workingHour": "Working time today",
-        "forToday": "Today's",
-        "yesterdayProduction": "Yesterday's",
-        "lastWeek": "Weekly",
-        "montly": "Monthly"
+        "LocationName": "Location",
+        "CompanyName": "Company",
+        "InverterNumber": "Inverter",
+        "ReadDate": "Read Date",
+        "InverterStatus": "Status",
+        "InverterStatusType": {
+          "0": "Not Ready",
+          "1": "Running",
+          "2": "No Connection",
+          "3": "Fault"
+        },
+        "PowerStrings": "Power Strings",
+        "EnergyLast1Hour": "Last 1 hour",
+        "EnergyLast2Hour": "Last 2 hours",
+        "DailyRuntime": "Working time today",
+        "EnergyToday": "Today's",
+        "EnergyYesterday": "Yesterday's",
+        "EnergyLastWeek": "Weekly",
+        "MonthlyEnergy": "Monthly"
       },
       "footer": {
         "loadTime": "Load Time"

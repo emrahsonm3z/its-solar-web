@@ -37,25 +37,35 @@
     "productionTable": {
       "toolbar": {
         "bindingByInverter": "Inverter-basierte Gruppe",
-        "bindingByCentral": "Kraftwerksbasierte Gruppe",
+        "bindingByCompany": "Unternehmensgruppe",
         "bindingByLocation": "Ortsbezogene Gruppe"
+      },
+      "pager": {
+        "All": "Alle"
       },
       "columns": {
         "InverterBlock": "Inverter",
         "PerformanceBlock": "Leistung",
         "ProductionBlock": "Produktion",
-        "location": "Location",
-        "central": "Zentral",
-        "Inverter": "Inverter",
-        "status": "Status",
-        "progress": "String-Werte",
-        "lastOneHour": "Letzte 1 Stunde",
-        "lastTwoHour": "Letzte 2 Stunden",
-        "workingHour": "Arbeitszeit heute",
-        "forToday": "Heute",
-        "yesterdayProduction": "Gestern",
-        "lastWeek": "Wöchentlich",
-        "montly": "Monatlich"
+        "LocationName": "Location",
+        "CompanyName": "Unternehmen",
+        "InverterNumber": "Inverter",
+        "ReadDate": "Datum lesen",
+        "InverterStatus": "Status",
+        "InverterStatusType": {
+          "0": "Nicht bereit",
+          "1": "Laufen",
+          "2": "Keine Verbindung",
+          "3": "Fehler"
+        },
+        "PowerStrings": "Power Strings",
+        "EnergyLast1Hour": "Letzte 1 Stunde",
+        "EnergyLast2Hour": "Letzte 2 Stunden",
+        "DailyRuntime": "Arbeitszeit heute",
+        "EnergyToday": "Heute",
+        "EnergyYesterday": "Gestern",
+        "EnergyLastWeek": "Wöchentlich",
+        "MonthlyEnergy": "Monatlich"
       },
       "footer": {
         "loadTime": "Ladezeit"

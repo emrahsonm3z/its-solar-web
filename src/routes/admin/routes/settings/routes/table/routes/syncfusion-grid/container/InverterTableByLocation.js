@@ -26,7 +26,7 @@ import Loading from "components/Loading";
 import { SampleBase } from "./SampleBase";
 import DEMO from "constants/demoData";
 
-import GET_INVERTERS_SUMMERY from "../gql/getSummaries.gql";
+import GET_INVERTERS_SUMMERY from "../gql/getInverterStats.mock.gql";
 
 import "../style.scss";
 

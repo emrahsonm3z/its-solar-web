@@ -6,7 +6,14 @@ import { addLocaleData } from "react-intl";
 import en from "react-intl/locale-data/en";
 import de from "react-intl/locale-data/de";
 import tr from "react-intl/locale-data/tr";
-import { L10n } from "@syncfusion/ej2-base";
+
+import { L10n /*loadCldr*/ } from "@syncfusion/ej2-base";
+// import * as numberingSystems from "cldr-data/supplemental/numberingSystems.json";
+// import * as numbers from "cldr-data/main/tr/numbers.json";
+// import * as cagregorian from "cldr-data/main/tr/ca-gregorian.json";
+// import * as timeZoneNames from "cldr-data/main/tr/timeZoneNames.json";
+// import * as currencies from "cldr-data/main/tr/currencies.json";
+
 import syncFusionGridLocaleTR from "routes/admin/routes/settings/routes/table/routes/syncfusion-grid/locale/gridLocaleConfig/tr.json";
 import syncFusionGridLocaleDE from "routes/admin/routes/settings/routes/table/routes/syncfusion-grid/locale/gridLocaleConfig/de.json";
 import classnames from "classnames";
@@ -31,6 +38,8 @@ L10n.load({
   "tr-TR": syncFusionGridLocaleTR,
   "de-DE": syncFusionGridLocaleDE
 });
+
+// loadCldr(currencies, cagregorian, numbers, timeZoneNames, numberingSystems);
 
 const AppRoute = ({
   userIsAuthenticated,

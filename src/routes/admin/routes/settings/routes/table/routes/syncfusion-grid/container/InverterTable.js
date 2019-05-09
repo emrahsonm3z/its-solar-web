@@ -20,6 +20,7 @@ import {
   ColumnChooser,
   DetailRow
 } from "@syncfusion/ej2-react-grids";
+
 import { RadioButton } from "@syncfusion/ej2-buttons";
 import classnames from "classnames";
 
@@ -28,12 +29,12 @@ import Loading from "components/Loading";
 import { SampleBase } from "./SampleBase";
 import DEMO from "constants/demoData";
 
-import GET_INVERTERS_SUMMERY from "../gql/getSummaries.gql";
+import INVERTER_STATS_QUERY from "../gql/getInverterStats.gql";
 
 import "../style.scss";
 
 const InvertersSummeryQuery = ({ children }) => (
-  <Query query={GET_INVERTERS_SUMMERY} pollInterval={5000}>
+  <Query query={INVERTER_STATS_QUERY} pollInterval={1000 * 60 * 5}>
     {({ loading, error, data }) => {
       // console.log("GET_INVERTERS_SUMMERY: ", data.AllProductionSummary[0]);
       // console.log("time: ", moment());
@@ -44,21 +45,20 @@ const InvertersSummeryQuery = ({ children }) => (
       if (loading) return <Loading pastDelay={200} />;
       if (error) return <p>Error : {error} </p>;
 
-      return children(data.AllProductionSummary, updatedTime);
+      return children(data.getStatisticDataByInverter, updatedTime);
     }}
   </Query>
 );
 
 const OrderProduction = {
   Inverter: 0,
-  Central: 1,
+  Company: 1,
   Location: 2
 };
 
-class InverterTable extends SampleBase<{}, {}> {
+class InverterTable extends SampleBase {
   constructor(props) {
     super(props);
-    console.log(props);
     this.state = {
       order: OrderProduction.Inverter,
       columns: []
@@ -77,10 +77,6 @@ class InverterTable extends SampleBase<{}, {}> {
     });
     this.toolbarOptions = [
       "ColumnChooser",
-      // {
-      //   type: "ColumnChooser",
-      //   title: "Test"
-      // },
       "ExcelExport",
       "Print",
       {
@@ -92,24 +88,18 @@ class InverterTable extends SampleBase<{}, {}> {
           }),
           name: "bindingBy",
           checked: true,
-          change: () => {
-            this.setState({ order: OrderProduction.Inverter });
-            this.setColumns(this.state.order);
-          }
+          change: () => this.setColumns(OrderProduction.Inverter)
         })
       },
       {
         type: "Input",
-        id: "bindingByCentral",
+        id: "bindingByCompany",
         template: new RadioButton({
           label: props.formatMessage({
-            id: "syncFusionGrid.productionTable.toolbar.bindingByCentral"
+            id: "syncFusionGrid.productionTable.toolbar.bindingByCompany"
           }),
           name: "bindingBy",
-          change: () => {
-            this.setState({ order: OrderProduction.Central });
-            this.setColumns(this.state.order);
-          }
+          change: () => this.setColumns(OrderProduction.Company)
         })
       },
       {
@@ -120,10 +110,7 @@ class InverterTable extends SampleBase<{}, {}> {
             id: "syncFusionGrid.productionTable.toolbar.bindingByLocation"
           }),
           name: "bindingBy",
-          change: () => {
-            this.setState({ order: OrderProduction.Location });
-            this.setColumns(this.state.order);
-          }
+          change: () => this.setColumns(OrderProduction.Location)
         })
       }
     ];
@@ -132,15 +119,24 @@ class InverterTable extends SampleBase<{}, {}> {
     this.pageOptions = {
       pageSize: 20,
       pageCount: 5,
-      // pageSizes: ["5", "10", "20", "50", "All"]
-      pageSizes: true
+      pageSizes: [
+        "5",
+        "10",
+        "20",
+        "50",
+        "100",
+        props.formatMessage({
+          id: "syncFusionGrid.productionTable.pager.All"
+        })
+      ]
+      // pageSizes: true
     };
     this.check = {
       type: "CheckBox"
     };
     this.status = {
       type: "CheckBox",
-      itemTemplate: this.statusDetails
+      itemTemplate: this.statusTemplate
     };
   }
 
@@ -150,7 +146,10 @@ class InverterTable extends SampleBase<{}, {}> {
 
   onComplete = args => {
     if (args.requestType === "filterchoicerequest") {
-      if (args.filterModel.options.field === "status") {
+      if (args.filterModel.options.field === "InverterStatus") {
+        args.filterModel.dialogObj.element
+          .querySelectorAll(".e-searchbox")[0]
+          .classList.add("e-hide");
         var span = args.filterModel.dialogObj.element.querySelectorAll(
           ".e-selectall"
         )[0];
@@ -166,45 +165,43 @@ class InverterTable extends SampleBase<{}, {}> {
 
     const mappedData = data.reduce((acc, curr) => {
       const {
-        location,
-        centralNo,
-        inverterNo,
-        status,
-        progress,
+        InverterID,
+        InverterNumber,
+        LocationID,
+        LocationName,
+        CompanyID,
+        CompanyName,
+        InverterStatus,
+        PowerStrings,
         ...args
       } = curr;
 
       let newItem = Object.assign(
         {},
         args,
-        order === 1 && { location, centralNo },
-        order === 2 && { location }
+        order === 1 && { LocationID, LocationName, CompanyID, CompanyName },
+        order === 2 && { LocationID, LocationName }
       );
 
-      // if (order === 1) Object.assign(newItem, { centralNo });
-
-      // debugger;
-      const key = order === 1 ? location + "-" + centralNo : location;
+      const key = order === 1 ? LocationName + "-" + CompanyName : LocationName;
 
       const item =
         acc.get(key) ||
         Object.assign({}, newItem, {
-          lastOneHour: 0,
-          lastTwoHour: 0,
-          workingHour: 0,
-          forToday: 0,
-          yesterdayProduction: 0,
-          lastWeek: 0,
-          montly: 0
+          EnergyLast1Hour: 0,
+          EnergyLast2Hour: 0,
+          EnergyToday: 0,
+          EnergyYesterday: 0,
+          EnergyLastWeek: 0,
+          MonthlyEnergy: 0
         });
 
-      item.lastOneHour += curr.lastOneHour;
-      item.lastTwoHour += curr.lastTwoHour;
-      item.workingHour = curr.workingHour;
-      item.forToday += curr.forToday;
-      item.yesterdayProduction += curr.yesterdayProduction;
-      item.lastWeek += curr.lastWeek;
-      item.montly += curr.montly;
+      item.EnergyLast1Hour += parseInt(curr.EnergyLast1Hour);
+      item.EnergyLast2Hour += parseInt(curr.EnergyLast2Hour);
+      item.EnergyToday += parseInt(curr.EnergyToday);
+      item.EnergyYesterday += parseInt(curr.EnergyYesterday);
+      item.EnergyLastWeek += parseInt(curr.EnergyLastWeek);
+      item.MonthlyEnergy += parseInt(curr.MonthlyEnergy);
 
       return acc.set(key, item);
     }, new Map());
@@ -215,8 +212,10 @@ class InverterTable extends SampleBase<{}, {}> {
     // debugger;
   };
 
-  toolbarClick = (args: ClickEventArgs) => {
+  toolbarClick = args => {
     if (args.item.text === "Excel Export") {
+      debugger;
+
       this.gridInstance.excelExport();
     }
   };
@@ -229,33 +228,71 @@ class InverterTable extends SampleBase<{}, {}> {
   // };
 
   excelQueryCellInfo = args => {
-    if (args.column.field === "progress") {
+    debugger;
+
+    if (args.column.field === "PowerStrings") {
       args.value = `${args.value.workedStrings}/${args.value.stringsCount}`;
     }
   };
 
-  statusDetails = props => {
-    if (props.status === "Select All") {
-      return <span />;
-    }
-    return this.statusTemplate(props);
-  };
+  // statusDetails = props => {
+  //   console.log("statusDetails", props);
+  //   const invStatusId = [0, 1, 2, 3];
+  //   if (
+  //     typeof invStatusId.find(x => x === parseInt(props.InverterStatus)) ===
+  //     "undefined"
+  //   ) {
+  //     debugger;
+  //     return <span>{props.InverterStatus}</span>;
+  //   }
+  //   return this.statusTemplate(props);
+  // };
+
+  // statusDetails = props => {
+  //   console.log("props.InverterStatus", props.InverterStatus);
+  //   if (props.InverterStatus === "Select All") {
+  //     debugger;
+  //     return <span />;
+  //   }
+  //   return this.statusTemplate(props);
+  // };
+
+  invStatusId = [0, 1, 2, 3];
 
   statusTemplate = props => {
+    const { formatMessage } = this.props;
     let loc = { width: "31px", height: "24px" };
-    const status =
-      props.status === 0
-        ? "../assets/grid/InSufficient.png"
-        : props.status === 1
-          ? "../assets/grid/Sufficient.png"
-          : "../assets/grid/Perfect.png";
+
+    let status = "";
+    switch (props.InverterStatus) {
+      case 0:
+        status = "../assets/grid/noready.png";
+        break;
+      case 1:
+        status = "../assets/grid/running.png";
+        break;
+      case 2:
+        status = "../assets/grid/noconnection.png";
+        break;
+      case 3:
+        status = "../assets/grid/fault.png";
+        break;
+      default:
+        status = "";
+        break;
+    }
 
     const text =
-      props.status === 0
-        ? "InSufficient"
-        : props.status === 1
-          ? "Sufficient"
-          : "Perfect";
+      typeof this.invStatusId.find(
+        x => x === parseInt(props.InverterStatus)
+      ) !== "undefined"
+        ? formatMessage({
+            id: `syncFusionGrid.productionTable.columns.InverterStatusType.${
+              props.InverterStatus
+            }`
+          })
+        : "";
+
     return (
       <div>
         <img style={loc} src={status} alt={text} />
@@ -264,7 +301,7 @@ class InverterTable extends SampleBase<{}, {}> {
     );
   };
 
-  linkTemplate = text => {
+  LinkTemplate = text => {
     return (
       <a href={DEMO.link} className="link-animated-hover link-hover-v3">
         {text}
@@ -272,26 +309,25 @@ class InverterTable extends SampleBase<{}, {}> {
     );
   };
 
-  centralTemplate = props => this.linkTemplate(props.centralNo);
-  invervorTemplate = props => this.linkTemplate(props.inverterNo);
+  CompanyTemplate = props => this.LinkTemplate(props.CompanyName);
+  InvertorTemplate = props => this.LinkTemplate(props.InverterNumber);
 
-  locationTemplate = props => {
+  LocationTemplate = props => {
     return (
       <div className="Mapimage">
         <img src="../assets/grid/Map.png" alt="" className="e-image" />
         <span> </span>
-        {this.linkTemplate(props.location)}
+        {this.LinkTemplate(props.LocationName)}
       </div>
     );
   };
 
-  progressTemplate = props => {
-    const percent =
-      (props.progress.workedStrings / props.progress.stringsCount) * 100;
+  ProgressTemplate = props => {
+    const percent = (props.WorkedStrings / props.StringsCount) * 100;
     return (
       <div className="e-grid-progress-bar">
         <span className="e-grid-progress-bar__label">
-          {props.progress.workedStrings}/{props.progress.stringsCount}
+          {props.WorkedStrings}/{props.StringsCount}
         </span>
         <div
           className={classnames("e-grid-progress-bar__item", {
@@ -305,9 +341,14 @@ class InverterTable extends SampleBase<{}, {}> {
       </div>
     );
   };
-  sortComparer = (reference, comparer) => {
-    const referencePercent = reference.workedStrings / reference.stringsCount;
-    const comparerPercent = comparer.workedStrings / comparer.stringsCount;
+
+  SortComparer = (reference, comparer) => {
+    const referencePercent =
+      reference.filter(c => c.Value !== null && c.Value > 0).length /
+      reference.length;
+    const comparerPercent =
+      comparer.filter(c => c.Value !== null && c.Value > 0).length /
+      comparer.length;
     if (referencePercent < comparerPercent) {
       return -1;
     }
@@ -320,27 +361,27 @@ class InverterTable extends SampleBase<{}, {}> {
   gridTemplate = props => {
     return (
       <table
-        key={props.id}
+        key={props.InverterID}
         className="e-grid-detailtable"
         style={{ width: "100%" }}
       >
         <tbody>
           <tr>
-            {props.progress.strings.map((item, index) => {
+            {props.PowerStrings.map((item, index) => {
               return (
                 index % 2 === 0 && (
-                  <Fragment key={`${item.id}e${index}`}>
+                  <Fragment key={`${item.Id}e${index}`}>
                     <th
-                      key={`${item.id}a${index}`}
+                      key={`${item.Id}a${index}`}
                       className="e-grid-detailtable__title"
                     >
-                      {item.name}
+                      {item.Name}
                     </th>
                     <td
-                      key={`${item.id}b${index}`}
+                      key={`${item.Id}b${index}`}
                       className="e-grid-detailtable__value"
                     >
-                      {item.value}
+                      {item.Value}
                     </td>
                   </Fragment>
                 )
@@ -348,21 +389,21 @@ class InverterTable extends SampleBase<{}, {}> {
             })}
           </tr>
           <tr>
-            {props.progress.strings.map((item, index) => {
+            {props.PowerStrings.map((item, index) => {
               return (
                 index % 2 === 1 && (
-                  <Fragment key={`${item.id}f${index}`}>
+                  <Fragment key={`${item.Id}f${index}`}>
                     <th
-                      key={`${item.id}c${index}`}
+                      key={`${item.Id}c${index}`}
                       className="e-grid-detailtable__title"
                     >
-                      {item.name}
+                      {item.Name}
                     </th>
                     <td
-                      key={`${item.id}d${index}`}
+                      key={`${item.Id}d${index}`}
                       className="e-grid-detailtable__value"
                     >
-                      {item.value}
+                      {item.Value}
                     </td>
                   </Fragment>
                 )
@@ -381,12 +422,12 @@ class InverterTable extends SampleBase<{}, {}> {
         col: 0,
         columns: [
           {
-            field: "location",
+            field: "LocationName",
             headerText: formatMessage({
-              id: "syncFusionGrid.productionTable.columns.location"
+              id: "syncFusionGrid.productionTable.columns.LocationName"
             }),
-            template: this.locationTemplate,
-            width: "130",
+            template: this.LocationTemplate,
+            width: "160",
             textAlign: "left",
             filter: this.check
           }
@@ -404,59 +445,59 @@ class InverterTable extends SampleBase<{}, {}> {
         col: 2,
         columns: [
           {
-            field: "lastOneHour",
+            field: "EnergyLast1Hour",
             headerText: formatMessage({
-              id: "syncFusionGrid.productionTable.columns.lastOneHour"
+              id: "syncFusionGrid.productionTable.columns.EnergyLast1Hour"
             }),
             width: "130",
             textAlign: "center",
             visible: false
           },
           {
-            field: "lastTwoHour",
+            field: "EnergyLast2Hour",
             headerText: formatMessage({
-              id: "syncFusionGrid.productionTable.columns.lastTwoHour"
+              id: "syncFusionGrid.productionTable.columns.EnergyLast2Hour"
             }),
             width: "130",
             textAlign: "center",
             visible: false
           },
           {
-            field: "workingHour",
+            field: "DailyRuntime",
             headerText: formatMessage({
-              id: "syncFusionGrid.productionTable.columns.workingHour"
+              id: "syncFusionGrid.productionTable.columns.DailyRuntime"
             }),
             width: "130",
             textAlign: "center"
           },
           {
-            field: "forToday",
+            field: "EnergyToday",
             headerText: formatMessage({
-              id: "syncFusionGrid.productionTable.columns.forToday"
+              id: "syncFusionGrid.productionTable.columns.EnergyToday"
             }),
             width: "110",
             textAlign: "center"
           },
           {
-            field: "yesterdayProduction",
+            field: "EnergyYesterday",
             headerText: formatMessage({
-              id: "syncFusionGrid.productionTable.columns.yesterdayProduction"
+              id: "syncFusionGrid.productionTable.columns.EnergyYesterday"
             }),
             width: "110",
             textAlign: "center"
           },
           {
-            field: "lastWeek",
+            field: "EnergyLastWeek",
             headerText: formatMessage({
-              id: "syncFusionGrid.productionTable.columns.lastWeek"
+              id: "syncFusionGrid.productionTable.columns.EnergyLastWeek"
             }),
             width: "110",
             textAlign: "center"
           },
           {
-            field: "montly",
+            field: "MonthlyEnergy",
             headerText: formatMessage({
-              id: "syncFusionGrid.productionTable.columns.montly"
+              id: "syncFusionGrid.productionTable.columns.MonthlyEnergy"
             }),
             width: "100",
             textAlign: "center"
@@ -473,11 +514,11 @@ class InverterTable extends SampleBase<{}, {}> {
       cols.forEach(item => {
         if (item.col === 0)
           item.columns.push({
-            field: "centralNo",
+            field: "CompanyName",
             headerText: formatMessage({
-              id: "syncFusionGrid.productionTable.columns.central"
+              id: "syncFusionGrid.productionTable.columns.CompanyName"
             }),
-            template: this.centralTemplate,
+            template: this.CompanyTemplate,
             width: "90",
             textAlign: "center",
             filter: this.check
@@ -488,39 +529,54 @@ class InverterTable extends SampleBase<{}, {}> {
       cols.forEach(item => {
         if (item.col === 0)
           item.columns.push({
-            field: "inverterNo",
+            field: "InverterNumber",
             headerText: formatMessage({
-              id: "syncFusionGrid.productionTable.columns.Inverter"
+              id: "syncFusionGrid.productionTable.columns.InverterNumber"
             }),
-            template: this.invervorTemplate,
+            template: this.InvertorTemplate,
             width: "90",
             textAlign: "center",
             filter: this.check
           });
 
-        if (item.col === 1)
+        if (item.col === 1) {
           Object.assign(item, {
             columns: [
               {
-                field: "status",
+                field: "ReadDate",
                 headerText: formatMessage({
-                  id: "syncFusionGrid.productionTable.columns.status"
+                  id: "syncFusionGrid.productionTable.columns.ReadDate"
                 }),
-                width: "130",
+                width: "110",
+                textAlign: "center",
+                type: "datetime",
+                format: {
+                  type: "datetime",
+                  format: "dd/MM/yyyy HH:mm"
+                }
+                // filter: this.status,
+                // template: this.statusTemplate
+              },
+              {
+                field: "InverterStatus",
+                headerText: formatMessage({
+                  id: "syncFusionGrid.productionTable.columns.InverterStatus"
+                }),
+                width: "110",
                 textAlign: "left",
                 filter: this.status,
                 template: this.statusTemplate
               },
               {
-                field: "progress",
+                field: "PowerStrings",
                 headerText: formatMessage({
-                  id: "syncFusionGrid.productionTable.columns.progress"
+                  id: "syncFusionGrid.productionTable.columns.PowerStrings"
                 }),
-                width: "200",
+                width: "120",
                 textAlign: "left",
                 allowFiltering: false,
-                template: this.progressTemplate,
-                sortComparer: this.sortComparer
+                template: this.ProgressTemplate,
+                sortComparer: this.SortComparer
               }
             ],
             headerText: formatMessage({
@@ -528,10 +584,14 @@ class InverterTable extends SampleBase<{}, {}> {
             }),
             textAlign: "center"
           });
+        }
       });
     }
+    //Clear sorting
+    typeof this.gridInstance !== "undefined" &&
+      this.gridInstance.clearSorting();
 
-    this.setState({ columns: [...cols] });
+    this.setState({ columns: [...cols], order: order });
   };
 
   // created = args => {
@@ -541,7 +601,6 @@ class InverterTable extends SampleBase<{}, {}> {
 
   render() {
     const { lang, formatMessage } = this.props;
-
     return (
       <div className="control-pane">
         <div className="control-section">
@@ -570,6 +629,9 @@ class InverterTable extends SampleBase<{}, {}> {
           >
             <ColumnsDirective>
               {this.state.columns.map(item => {
+                if (item.columns.length === 0) {
+                  return false;
+                }
                 const { col, ...args } = item;
                 return <ColumnDirective key={col} {...args} />;
               })}
@@ -608,9 +670,9 @@ class InverterTable extends SampleBase<{}, {}> {
 const Container = props => {
   return (
     <InvertersSummeryQuery>
-      {(summaries, updatedTime) => (
+      {(inverterStats, updatedTime) => (
         <InverterTable
-          data={summaries}
+          data={inverterStats}
           updatedTime={updatedTime}
           lang={props.lang}
           formatMessage={props.intl.formatMessage}

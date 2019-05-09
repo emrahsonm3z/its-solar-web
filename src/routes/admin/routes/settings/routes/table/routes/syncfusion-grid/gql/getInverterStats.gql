@@ -1,0 +1,27 @@
+query($criteria: StatisticCriteria) {
+  getStatisticDataByInverter(input: $criteria) {
+    InverterID
+    InverterNumber
+    LocationID
+    LocationName
+    CompanyID
+    CompanyName
+    InverterStatus
+    PowerStrings {
+      Id
+      Name
+      Value
+    }
+    StringsCount
+    WorkedStrings
+    ReadDate
+    InverterTemperature
+    DailyRuntime
+    EnergyLast1Hour
+    EnergyLast2Hour
+    EnergyToday
+    EnergyYesterday
+    EnergyLastWeek
+    MonthlyEnergy
+  }
+}

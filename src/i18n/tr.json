@@ -36,26 +36,36 @@
   "syncFusionGrid": {
     "productionTable": {
       "toolbar": {
-        "bindingByInverter": "Invertör bazlı grupla",
-        "bindingByCentral": "Santral bazlı grupla",
+        "bindingByInverter": "Inverter bazlı grupla",
+        "bindingByCompany": "Firma bazlı grupla",
         "bindingByLocation": "Konum bazlı grupla"
       },
+      "pager": {
+        "All": "Tümü"
+      },
       "columns": {
-        "InverterBlock": "Invertör",
+        "InverterBlock": "Inverter",
         "PerformanceBlock": "Performans",
         "ProductionBlock": "Üretim",
-        "location": "Konum",
-        "central": "Santral",
-        "Inverter": "Invertör",
-        "status": "Durum",
-        "progress": "String değerleri",
-        "lastOneHour": "Son 1 saatlik",
-        "lastTwoHour": "Son 2 saatlik",
-        "workingHour": "Bugünkü çalışma süresi",
-        "forToday": "Bugünkü",
-        "yesterdayProduction": "Dünkü",
-        "lastWeek": "Haftalık",
-        "montly": "Aylık"
+        "LocationName": "Konum",
+        "CompanyName": "Firma",
+        "InverterNumber": "Inverter",
+        "ReadDate": "Okuma Tarihi",
+        "InverterStatus": "Durum",
+        "InverterStatusType": {
+          "0": "Hazır Değil",
+          "1": "Çalışıyor",
+          "2": "Bağlantı Yok",
+          "3": "Hata"
+        },
+        "PowerStrings": "Power Strings",
+        "EnergyLast1Hour": "Son 1 saatlik",
+        "EnergyLast2Hour": "Son 2 saatlik",
+        "DailyRuntime": "Bugünkü çalışma süresi",
+        "EnergyToday": "Bugünkü",
+        "EnergyYesterday": "Dünkü",
+        "EnergyLastWeek": "Haftalık",
+        "MonthlyEnergy": "Aylık"
       },
       "footer": {
         "loadTime": "Yüklenme Zamanı"
