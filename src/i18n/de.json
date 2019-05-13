@@ -17,6 +17,22 @@
   "sidenav": {
     "dashboard": "Instrumententafel"
   },
+  "fields": {
+    "date": {
+      "day": {
+        "long": "tag",
+        "short": "d"
+      },
+      "hour": {
+        "long": "stunde",
+        "short": "h"
+      },
+      "minute": {
+        "long": "minute",
+        "short": "min"
+      }
+    }
+  },
   "page": {
     "home": {
       "body1": "Solarenergie",

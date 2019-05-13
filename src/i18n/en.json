@@ -17,6 +17,22 @@
   "sidenav": {
     "dashboard": "Dashboard"
   },
+  "fields": {
+    "date": {
+      "day": {
+        "long": "day",
+        "short": "d"
+      },
+      "hour": {
+        "long": "hour",
+        "short": "h"
+      },
+      "minute": {
+        "long": "minute",
+        "short": "min"
+      }
+    }
+  },
   "page": {
     "home": {
       "body1": "Solar Energy",

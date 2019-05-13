@@ -25,6 +25,7 @@ import { RadioButton } from "@syncfusion/ej2-buttons";
 import classnames from "classnames";
 
 import Loading from "components/Loading";
+import { convertToShortDiffByMinute } from "utils/dateParser";
 
 import { SampleBase } from "./SampleBase";
 import DEMO from "constants/demoData";
@@ -415,6 +416,27 @@ class InverterTable extends SampleBase {
     );
   };
 
+  DateDiffByMinuteTemplate = props => {
+    const { formatMessage } = this.props;
+    const date = convertToShortDiffByMinute(props.DailyRuntime);
+    const result = (date.day > 0
+      ? `${date.day}${formatMessage({ id: "fields.date.day.short" })} `
+      : ""
+    )
+      .concat(
+        date.hour > 0
+          ? `${date.hour}${formatMessage({ id: "fields.date.hour.short" })} `
+          : ""
+      )
+      .concat(
+        date.minute > 0
+          ? `${date.minute}${formatMessage({ id: "fields.date.minute.short" })}`
+          : ""
+      );
+
+    return <span>{result}</span>;
+  };
+
   setColumns = order => {
     const { formatMessage } = this.props;
     const cols = [
@@ -467,8 +489,9 @@ class InverterTable extends SampleBase {
             headerText: formatMessage({
               id: "syncFusionGrid.productionTable.columns.DailyRuntime"
             }),
-            width: "130",
-            textAlign: "center"
+            width: "160",
+            textAlign: "center",
+            template: this.DateDiffByMinuteTemplate
           },
           {
             field: "EnergyToday",
@@ -547,22 +570,21 @@ class InverterTable extends SampleBase {
                 headerText: formatMessage({
                   id: "syncFusionGrid.productionTable.columns.ReadDate"
                 }),
-                width: "110",
+                width: "130",
                 textAlign: "center",
                 type: "datetime",
                 format: {
                   type: "datetime",
                   format: "dd/MM/yyyy HH:mm"
-                }
-                // filter: this.status,
-                // template: this.statusTemplate
+                },
+                allowFiltering: false
               },
               {
                 field: "InverterStatus",
                 headerText: formatMessage({
                   id: "syncFusionGrid.productionTable.columns.InverterStatus"
                 }),
-                width: "110",
+                width: "140",
                 textAlign: "left",
                 filter: this.status,
                 template: this.statusTemplate
@@ -608,7 +630,8 @@ class InverterTable extends SampleBase {
             // dataSource={this.bindData}
             dataSource={this.dataStateChange(this.props.data, this.state.order)}
             ref={grid => (this.gridInstance = grid)}
-            locale={lang === "tr" ? "tr-TR" : lang === "de" ? "de-DE" : "en-EN"}
+            // locale={lang === "tr" ? "tr-TR" : lang === "de" ? "de-DE" : "en-US"}
+            locale={lang}
             // created={this.created}
             detailTemplate={this.state.order === 0 && this.gridTemplate}
             toolbar={this.toolbarOptions}

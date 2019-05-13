@@ -17,6 +17,22 @@
   "sidenav": {
     "dashboard": "Panel"
   },
+  "fields": {
+    "date": {
+      "day": {
+        "long": "gün",
+        "short": "g"
+      },
+      "hour": {
+        "long": "saat",
+        "short": "sa"
+      },
+      "minute": {
+        "long": "dakika",
+        "short": "dk"
+      }
+    }
+  },
   "page": {
     "home": {
       "body1": "Güneş enerjisi",

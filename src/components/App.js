@@ -7,12 +7,15 @@ import en from "react-intl/locale-data/en";
 import de from "react-intl/locale-data/de";
 import tr from "react-intl/locale-data/tr";
 
-import { L10n /*loadCldr*/ } from "@syncfusion/ej2-base";
+import { L10n, loadCldr, setCulture } from "@syncfusion/ej2-base";
 // import * as numberingSystems from "cldr-data/supplemental/numberingSystems.json";
-// import * as numbers from "cldr-data/main/tr/numbers.json";
-// import * as cagregorian from "cldr-data/main/tr/ca-gregorian.json";
-// import * as timeZoneNames from "cldr-data/main/tr/timeZoneNames.json";
-// import * as currencies from "cldr-data/main/tr/currencies.json";
+// import * as gregorian from "cldr-data/main/nl/ca-gregorian.json";
+// import * as numbers from "cldr-data/main/nl/numbers.json";
+// import * as timeZoneNames from "cldr-data/main/nl/timeZoneNames.json";
+import * as gregorian from "./cldr/tr/ca-gregorian.json";
+import * as numberingSystems from "./cldr/tr/numberingSystems.json";
+import * as numbers from "./cldr/tr/numbers.json";
+import * as timeZoneNames from "./cldr/tr/timeZoneNames.json";
 
 import syncFusionGridLocaleTR from "routes/admin/routes/settings/routes/table/routes/syncfusion-grid/locale/gridLocaleConfig/tr.json";
 import syncFusionGridLocaleDE from "routes/admin/routes/settings/routes/table/routes/syncfusion-grid/locale/gridLocaleConfig/de.json";
@@ -35,11 +38,18 @@ addLocaleData(de);
 
 // Syncfusion component globalization load
 L10n.load({
-  "tr-TR": syncFusionGridLocaleTR,
-  "de-DE": syncFusionGridLocaleDE
+  tr: syncFusionGridLocaleTR,
+  de: syncFusionGridLocaleDE
 });
 
-// loadCldr(currencies, cagregorian, numbers, timeZoneNames, numberingSystems);
+// loadCldr(numberingSystems, gregorian, numbers, timeZoneNames);
+loadCldr(gregorian);
+loadCldr(timeZoneNames);
+loadCldr(numbers);
+loadCldr(numberingSystems);
+setCulture("tr");
+// set currency code globally
+// setCurrencyCode("EUR");
 
 const AppRoute = ({
   userIsAuthenticated,
